@@ -1,0 +1,447 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.grid-images {
+    /* background: #fff; */
+    padding: 10px;
+}
+
+.item_image {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    border-radius: 5px;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.9);
+
+    opacity: 0;
+    transform: translateY(50px);
+    /* transition: opacity 0.6s ease-out, transform 0.6s ease-out; */
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.item_image.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.item_image img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.grid-wrapper>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-wrapper>div>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.grid-wrapper {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 250px;
+    grid-auto-flow: dense;
+}
+
+.grid-wrapper .doc {
+    grid-row: span 2;
+}
+
+.grid-wrapper .big {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* Định dạng ban đầu cho các icon - ẩn và đặt vị trí cao hơn một chút */
+.download-icon,
+.like-icon,
+.view-icon,
+.report-icon {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(-20px);
+    /* Đẩy icon lên trên */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Khi hover vào item_image, các icon sẽ xuất hiện từ trên xuống */
+.item_image:hover .download-icon,
+.item_image:hover .like-icon,
+.item_image:hover .view-icon,
+.item_image:hover .report-icon {
+    opacity: 1;
+    transform: translateY(0);
+    /* Trở về vị trí ban đầu */
+}
+
+/* Tùy chỉnh icon cho Download, Like và View */
+.download-icon i,
+.like-icon i {
+    color: #fff;
+    cursor: pointer;
+}
+
+.view-icon i {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.like-icon {
+    margin-right: 10px;
+}
+
+.download-icon {
+    margin-left: 10px;
+}
+
+.download-icon span,
+.like-icon,
+.view-icon,
+.report-icon {
+    font-size: 12px;
+    color: rgb(203, 201, 201);
+}
+
+
+.like-icon i:hover {
+    color: #ff0000;
+}
+
+.download-icon:hover span {
+    color: blue;
+}
+
+.download-icon:hover i {
+    color: blue;
+}
+
+.download-icon {
+    top: 0px;
+    left: 0px;
+}
+
+.like-icon {
+    top: 0px;
+    right: 0px;
+}
+
+.view-icon {
+    left: 50%;
+    top: 0px;
+}
+
+.report-icon {
+    bottom: 40px;
+    right: 2%;
+    text-align: center;
+    width: 30px;
+}
+
+.pf-icon {
+    top: 30%;
+    left: 50%;
+}
+
+.pf-icon {
+    font-size: 36px;
+    color: #ffffff;
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.portfolio-section .pf-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 5px;
+}
+
+.item_image:hover .pf-icon {
+    opacity: 1;
+}
+
+.pf-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Đưa icon vào giữa ảnh */
+    z-index: 10;
+    /* Đảm bảo icon nằm trên ảnh */
+    color: white;
+    font-size: 2rem;
+    /* Tùy chỉnh kích thước icon */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    /* Thêm hiệu ứng mượt khi xuất hiện */
+}
+
+/* Định dạng cho phần pf-text */
+.pf-text {
+    position: absolute;
+    bottom: -100%;
+    /* Đặt dưới phạm vi của khung */
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    text-align: center;
+    /* padding: 10px; */
+    opacity: 0;
+    transition: opacity 0.5s ease, bottom 0.5s ease;
+    /* Hiệu ứng mượt */
+}
+
+/* Khi hover vào item_image, .pf-text trượt lên từ dưới */
+.item_image:hover .pf-text {
+    bottom: 0;
+    /* Trở về vị trí ban đầu */
+    opacity: 1;
+    /* Hiện */
+}
+
+
+.item_image:hover .pf-text {
+    bottom: 0px;
+}
+
+.item_image:hover .pf-text h4 {
+    color: #fff;
+    opacity: 1;
+    top: 0;
+}
+
+.item_image:hover .pf-text span {
+    opacity: 1;
+    top: 0;
+}
+
+.item_image .pf-text {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    bottom: -100px;
+    width: 100%;
+}
+
+.item_image .pf-text h5 {
+    color: #ffffff;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 5px;
+    position: relative;
+    top: 20px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.item_image .pf-text span {
+    font-size: 15px;
+    color: #009603;
+    position: relative;
+    top: 40px;
+    -webkit-transition: all 0.6s;
+    -o-transition: all 0.6s;
+    transition: all 0.6s;
+}
+
+.download-icon img {
+    width: 90px;
+    /* Đặt kích thước cố định */
+}
+
+.download-icon,
+.view-icon,
+.like-icon,
+.report-icon {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    outline: 4px solid rgba(0, 0, 0, 0.6);
+    /* Tạo viền hiệu ứng hover mà không thay đổi kích thước ảnh */
+}
+
+.item_image.ngang,
+.item_image.doc {
+    display: block;
+    /* Hiển thị hình ảnh đã lọc */
+}
+
+@media (min-width: 990px) {
+    .icon_plus {
+        font-size: 50px !important;
+    }
+}
+
+
+
+/* .bd-gallery {
+    column-count: 2;
+    column-gap: 12px;
+    margin-top: 20px;
+}
+
+.bd-gallery .item_image {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 12px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.bd-gallery .item_image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}*/
+
+.bd-gallery {
+    column-count: 2;
+    column-gap: 12px;
+    margin-top: 20px;
+}
+
+.bd-gallery .item_image {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 12px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    position: relative;
+}
+
+.bd-gallery .item_image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+/* Nút download */
+.bd-gallery .download-icon {
+    position: absolute;
+    top: -50px; /* Lúc đầu ẩn ra ngoài trên */
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 6px 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    opacity: 0;
+    transition: all 0.4s ease;
+    pointer-events: none; /* Không cho click khi chưa hover */
+}
+
+.bd-gallery .download-icon i {
+    font-size: 16px;
+}
+
+/* Khi hover vào ảnh, thì nút hiện ra */
+.bd-gallery .item_image:hover .download-icon {
+    top: 10px; /* Trượt xuống */
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Responsive: Mobile chỉ 1 cột */
+@media (max-width: 768px) {
+    .bd-gallery {
+        column-count: 1;
+    }
+}
+
+.bd-gallery .item_image:hover img {
+    transform: scale(1.02);
+}
+
+.bd-gallery .item_image img {
+    filter: contrast(110%) brightness(105%);
+    -webkit-filter: saturate(120%) contrast(110%);
+    transition: transform 0.3s ease;
+}
+
+/* Responsive: Màn hình nhỏ (mobile) chỉ 1 cột */
+@media (max-width: 768px) {
+    .bd-gallery {
+        column-count: 1;
+    }
+}
+
+.blog-details-section .image-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.blog-details-section .image-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.blog-details-section .close-overlay {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.blog-details-section .expand-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Dịch chuyển để căn giữa */
+    cursor: pointer;
+    padding: 5px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    font-size: 40px;
+    display: none;
+    width: 60px;
+    line-height: 50px;
+    text-align: center;
+}
+
+
+.blog-details-section .item_image:hover .expand-icon {
+    display: block !important;
+}
