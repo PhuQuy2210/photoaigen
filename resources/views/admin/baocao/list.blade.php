@@ -40,8 +40,8 @@
                     <td>{{ Auth::user()->email }}</td>
                     <td>
                         <img class="size-image img-thumbnail mx-auto d-block view-image"
-                            src="{{ asset($report->hinhanh->url) }}" alt="{{ $report->name }}"
-                            data-src="{{ asset($report->hinhanh->url) }}">
+                            src="{{ asset($report->hinhanh->full_url) }}" alt="{{ $report->name }}"
+                            data-src="{{ asset($report->hinhanh->full_url) }}">
                     </td>
                     {{-- Thao tác --}}
                     <td style="text-align: center">

@@ -27,7 +27,7 @@
                             <!-- Cột chứa ID ảnh -->
                             <div class="col-md-6">
                                 <h4 class="me-5">ID ảnh: {{ $image->id }}</h4>
-                                <img src="{{ asset($image->url) }}" alt="Image" class="img-fluid"
+                                <img src="{{ asset($image->full_url) }}" alt="Image" class="img-fluid"
                                     style="max-width: 300px; max-height: 400px;">
                             </div>
 
@@ -98,7 +98,7 @@
                                     <label for="originalContent" class="form-label"><strong>Liên kết đến hình ảnh
                                             gốc</strong></label>
                                     <input type="url" name="url" class="form-control" id="originalContent"
-                                        value="{{ $baocao->url }}" placeholder="Dán liên kết đến nội dung gốc" required>
+                                        value="{{ $baocao->full_url }}" placeholder="Dán liên kết đến nội dung gốc" required>
                                 </div>
                             </div>
                         </div>
