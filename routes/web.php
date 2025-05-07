@@ -71,7 +71,7 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
 
     // trang tin tức
     Route::prefix('blog')->group(function () {
-        Route::get('/', [BlogController::class, 'index']);
+        Route::get('/', [BlogController::class, 'index'])->name('blog');
         Route::get('/blogdetail/{id}', [BlogController::class, 'blogdetail']);
         Route::get('/popular', [BlogController::class, 'blog_popular']);
         Route::get('/category/{id}', [BlogController::class, 'blog_category'])->name('danhmuc.category');

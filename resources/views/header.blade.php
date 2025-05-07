@@ -14,7 +14,7 @@
                     <nav class="nav-menu mobile-menu">
                         <ul class="d-flex flex-lg-row justify-content-center">
                             <li><a href="{{ url('/') }}"> {{ __('messages.wallpaper') }}</a></li>
-                            <li><a href="{{ url('/blog') }}"> {{ __('messages.news') }}</a></li>
+                            <li><a href="{{ route('blog') }}"> {{ __('messages.news') }}</a></li>
                         </ul>
                     </nav>
                 </div>
