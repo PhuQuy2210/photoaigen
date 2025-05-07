@@ -17,11 +17,11 @@ return new class extends Migration
         });
 
         // Đổ dữ liệu cho bảng roles
-        DB::table('roles')->insert([
-            ['id' => 0, 'name' => 'admin'],
-            ['id' => 1, 'name' => 'staff'],
-            ['id' => 2, 'name' => 'user'],
-        ]);
+        // DB::table('roles')->insert([
+        //     ['id' => 0, 'name' => 'admin'],
+        //     ['id' => 1, 'name' => 'staff'],
+        //     ['id' => 2, 'name' => 'user'],
+        // ]);
     }
 
     /**
