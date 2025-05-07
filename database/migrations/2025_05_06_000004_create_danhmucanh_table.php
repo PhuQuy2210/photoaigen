@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('danhmucanh', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name', 100)->comment('Tên danh mục cho hình ảnh');
             $table->integer('active')->default(1);
         });

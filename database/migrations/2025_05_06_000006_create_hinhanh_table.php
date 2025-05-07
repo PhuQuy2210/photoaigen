@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('direction')->default(1)->comment('0-ngang or 1-dọc');
             $table->integer('view')->nullable()->comment('Lượt xem');
             $table->integer('like_count')->default(1500)->comment('Số lượt thích của hình ảnh');
-            $table->integer('category_id')->nullable()->comment('Danh mục ảnh');
-            $table->integer('category_child')->default(1)->comment('Danh mục con');
+            $table->unsignedBigInteger('category_id')->nullable()->comment('Danh mục ảnh');
+            $table->unsignedBigInteger('category_child')->default(1)->comment('Danh mục con');
             $table->timestamp('created_at')->useCurrent()->comment('Ngày đăng tải');
             $table->timestamp('updated_at')->useCurrent()->comment('Ngày cập nhật');
 
