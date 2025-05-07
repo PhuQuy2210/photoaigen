@@ -95,7 +95,7 @@
     </form>
 @endsection
 @section('footer')
-    <script src="/template/admin/js/catagory.js"></script>
+    <script src="{{ asset('template/admin/js/catagory.js') }}"></script>
     {{-- bình thường cho kéo --}}
     <script>
         // Đảm bảo DOM đã sẵn sàng

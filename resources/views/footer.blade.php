@@ -6,7 +6,7 @@
             <div class="fs-about">
                 <div class="fa-logo">
                     <a href="#">
-                        <img src="/template/img/f-logo.png" alt="">
+                        <img src="{{ asset('template/img/f-logo.png') }}" alt="">
                     </a>
                 </div>
                 <p>{{ __('messages.explore') }}
@@ -86,7 +86,7 @@
                     <script>
                         document.write(new Date().getFullYear());
                     </script>
-                <span>Made with <i class="bi bi-heart-fill text-danger"></i> by AI</span>
+                    <span>Made with <i class="bi bi-heart-fill text-danger"></i> by AI</span>
                 </p>
             </div>
         </div>
@@ -118,14 +118,14 @@
 <!-- jQuery (phải trước Bootstrap) -->
 {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
 <!-- Js Plugins -->
-{{-- <script src="/template/js/jquery-3.3.1.min.js"></script> --}}
-<script src="/template/js/bootstrap.min.js"></script>
-<script src="/template/js/jquery.magnific-popup.min.js"></script>
-<script src="/template/js/isotope.pkgd.min.js"></script>
-<script src="/template/js/masonry.pkgd.min.js"></script>
-<script src="/template/js/jquery.slicknav.js"></script>
-<script src="/template/js/owl.carousel.min.js"></script>
-<script src="/template/js/main.js"></script>
-<script src="/template/admin/js/main.js"></script>
+{{-- <script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script> --}}
+<script src="{{ asset('template/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('template/js/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('template/js/isotope.pkgd.min.js') }}"></script>
+<script src="{{ asset('template/js/masonry.pkgd.min.js') }}"></script>
+<script src="{{ asset('template/js/jquery.slicknav.js') }}"></script>
+<script src="{{ asset('template/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('template/js/main.js') }}"></script>
+<script src="{{ asset('template/admin/js/main.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/template/js/design.js"></script>    
+<script src="{{ asset('template/js/design.js') }}"></script>

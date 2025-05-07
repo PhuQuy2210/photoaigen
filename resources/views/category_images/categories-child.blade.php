@@ -43,5 +43,5 @@
     </section>
 @endsection
 @section('footer')
-    <script src="/template/js/design.js"></script>
+<script src="{{ asset('template/js/design.js') }}"></script>
 @endsection

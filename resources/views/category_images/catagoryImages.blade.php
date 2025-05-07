@@ -13,7 +13,7 @@
                         <li class="active" data-filter="*" danhmuc-filter="*">All</li>
                         @foreach ($danhmucs as $danhmuc)
                             <li data-filter=".{{ Str::slug($danhmuc->name) }}"
-                                danhmuc-filter="{{ Str::slug($danhmuc->name) }}">{{  $danhmuc->translated_name }}</li>
+                                danhmuc-filter="{{ Str::slug($danhmuc->name) }}">{{ $danhmuc->translated_name }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -30,5 +30,5 @@
     </section>
 @endsection
 @section('footer')
-    <script src="/template/js/design.js"></script>
+    <script src="{{ asset('template/js/design.js') }}"></script>
 @endsection

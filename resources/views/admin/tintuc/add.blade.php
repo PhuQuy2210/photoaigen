@@ -105,7 +105,8 @@
 @endsection
 @section('footer')
     <script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/super-build/ckeditor.js"></script>
-    <script src="/template/admin/js/ckeditor.js"></script>
+    <script src="{{ asset('template/admin/js/ckeditor.js') }}"></script>
+
 
     <script>
         // Đảm bảo DOM đã sẵn sàng

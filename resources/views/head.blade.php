@@ -14,20 +14,19 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="/template/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="/template/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="/template/css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="/template/css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="/template/css/magnific-popup.css" type="text/css">
-<link rel="stylesheet" href="/template/css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="/template/css/style.css" type="text/css">
-<link rel="stylesheet" href="/template/css/list-images.css" type="text/css">
-<link rel="stylesheet" href="/template/css/reponsive.css" type="text/css">
-
+<link rel="stylesheet" href="{{ asset('template/css/bootstrap.min.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('template/css/font-awesome.min.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('template/css/elegant-icons.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('template/css/owl.carousel.min.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('template/css/magnific-popup.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('template/css/slicknav.min.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('template/css/style.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('template/css/list-images.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('template/css/reponsive.css') }}" type="text/css">
 
 <!-- CSS Files -->
-<link rel="stylesheet" href="/template/admin/css/plugins.min.css" />
-<link rel="stylesheet" href="/template/admin/css/kaiadmin.min.css" />
+<link rel="stylesheet" href="{{ asset('template/admin/css/plugins.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('template/admin/css/kaiadmin.min.css') }}" />
 {{-- <link rel="stylesheet" href="/template/css/style.css" /> --}}
 {{-- <link rel="stylesheet" href="/template/sass/style.scss" /> --}}
 

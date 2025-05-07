@@ -10,13 +10,14 @@
             </div>
         </div>
         @include('category_images.list_category')
-        
+
         <h2 class="pb-2 pl-2 fw-bold text-uppercase bg-h2">
             {{ __('messages.explore_more') }}
         </h2>
         @foreach ($danhmuccons as $danhmuc)
             <div class="category_child btn-group mt-3 pl-2" role="group">
-                <a href="/images-categories-child/{{ $danhmuc->id }}" class="btn btn-custom">{{ $danhmuc->translated_name }}</a>
+                <a href="/images-categories-child/{{ $danhmuc->id }}"
+                    class="btn btn-custom">{{ $danhmuc->translated_name }}</a>
             </div>
         @endforeach
     </div>
@@ -36,5 +37,5 @@
     </section>
 @endsection
 @section('footer')
-    <script src="/template/js/design.js"></script>
+    <script src="{{ asset('template/js/design.js') }}"></script>
 @endsection

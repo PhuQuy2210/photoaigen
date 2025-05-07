@@ -5,7 +5,7 @@
             <div class="col-3 header-padding">
                 <div class="logo">
                     <a href="/">
-                        <img src="/template/img/logo.png" alt="LOGO">
+                        <img src="{{ asset('template/img/logo.png') }}" alt="LOGO">
                     </a>
                 </div>
             </div>
