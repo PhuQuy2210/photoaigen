@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_likes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->integer('hinhanh_id')->nullable();
+            $table->unsignedBigInteger('hinhanh_id')->nullable();
             $table->dateTime('liked_at')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Ngày thích hình ảnh');
 
             $table->foreign('user_id')

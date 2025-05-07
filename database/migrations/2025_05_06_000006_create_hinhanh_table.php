@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('hinhanh', function (Blueprint $table) {
-            $table->increments('id'); // AUTO_INCREMENT
+            $table->id(); // AUTO_INCREMENT
             $table->string('url', 300)->comment('URL của hình ảnh');
             $table->string('thumb_path', 255)->nullable();
             $table->text('description')->nullable()->comment('Mô tả hình ảnh');
