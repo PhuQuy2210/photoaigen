@@ -4,7 +4,7 @@
         <div class="row align-items-center background-header color-header">
             <div class="col-3 header-padding">
                 <div class="logo">
-                    <a href="/">
+                    <a href="{{ url('/') }}">
                         <img src="{{ asset('template/img/logo.png') }}" alt="LOGO">
                     </a>
                 </div>
@@ -13,8 +13,8 @@
                 <div class="show-from-600">
                     <nav class="nav-menu mobile-menu">
                         <ul class="d-flex flex-lg-row justify-content-center">
-                            <li><a href="/"> {{ __('messages.wallpaper') }}</a></li>
-                            <li><a href="/blog"> {{ __('messages.news') }}</a></li>
+                            <li><a href="url('/')"> {{ __('messages.wallpaper') }}</a></li>
+                            <li><a href="url('/blog')"> {{ __('messages.news') }}</a></li>
                         </ul>
                     </nav>
                 </div>
