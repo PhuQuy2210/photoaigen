@@ -3,7 +3,7 @@
 @section('content')
     <!-- Blog Details Section Begin -->
     <div class="blog-hero bg-cover bg-center h-96"
-        style="background-image: url('{{ $blog->first_image_url ?? '/upload/hinhdaidien/default.png' }}')"></div>
+        style="background-image: url('{{ asset($blog->first_image_url ?? 'upload/hinhdaidien/default.png') }}')"></div>
     <section class="blog-details-section py-12">
         <div class="container mx-auto">
             <div class="flex flex-wrap -mx-4">
@@ -11,7 +11,8 @@
                     <div class="blog-details-text">
                         <div class="bd-title mb-6">
                             <div class="bt-bread text-gray-500 text-sm mb-4">
-                                <a href="/blog" class="hover:underline"><i class="fa fa-home"></i> Home</a>
+                                <a href="{{ route('blog.index') }}" class="hover:underline"><i class="fa fa-home"></i>
+                                    Home</a>
                                 <i class="bi bi-chevron-right mx-2"></i>
                                 <span>{{ $danhmuc->translated_name }}</span>
                                 <i class="bi bi-chevron-double-right mx-2"></i>
@@ -36,8 +37,8 @@
                             <div class="bd-gallery">
                                 @foreach ($blogImages as $image)
                                     <div class="item_image position-relative">
-                                        <img src="{{ $image->full_url }}" loading="lazy"
-                                            onerror="this.onerror=null;this.src='/upload/hinhdaidien/default.png';"
+                                        <img src="{{ asset($image->full_url) }}" loading="lazy"
+                                            onerror="this.onerror=null;this.src='{{ asset('upload/hinhdaidien/default.png') }}';"
                                             alt="Ảnh bài viết" class="preview-img">
 
                                         <!-- Nút download -->
@@ -70,11 +71,10 @@
 
                         {{-- Chèn quảng cáo --}}
                         <div class="bd-pics">
-                            <img src="/template/img/blog/details/bd-1.jpg" alt="">
-                            <img src="/template/img/blog/details/bd-2.jpg" alt="">
-                            <img src="/template/img/blog/details/bd-3.jpg" alt="">
+                            <img src="{{ asset('template/img/blog/details/bd-1.jpg') }}" alt="">
+                            <img src="{{ asset('template/img/blog/details/bd-2.jpg') }}" alt="">
+                            <img src="{{ asset('template/img/blog/details/bd-3.jpg') }}" alt="">
                         </div>
-
                         <div class="bd-tag-share flex justify-between items-center mb-6 align-items-center">
                             @php
                                 $currentUrl = request()->fullUrl();
@@ -128,8 +128,8 @@
                                         <div class="pad-10-resp col-lg-12 p-0">
                                             <div class="blog-item flex flex-col sm:flex-row mb-6 text-justify d-flex">
                                                 <div class="bi-pic w-full sm:w-1/3 mb-4 sm:mb-0 col-6 pl-0">
-                                                    <img src="{{ $blog->first_image_url ?? '/upload/hinhdaidien/default.png' }}"
-                                                        onerror="this.onerror=null;this.src='/upload/hinhdaidien/default.png';"
+                                                    <img src="{{ asset($blog->first_image_url ?? 'upload/hinhdaidien/default.png') }}"
+                                                        onerror="this.onerror=null;this.src='{{ asset('upload/hinhdaidien/default.png') }}';"
                                                         alt="Ảnh minh họa" class="w-full h-48 object-cover rounded-lg">
                                                 </div>
                                                 <div class="bi-text w-full sm:w-2/3 sm:pl-6 col-6 pr-0">
@@ -138,7 +138,7 @@
                                                         {{ $item->category->translated_name ?? 'Chưa phân loại' }}
                                                     </div>
                                                     <h5 class="text-xl font-semibold mb-2">
-                                                        <a href="/blog/blogdetail/{{ $blog->id }}"
+                                                        <a href="{{ route('blog.detail', ['id' => $blog->id]) }}"
                                                             class="hover:underline">
                                                             {{ \Illuminate\Support\Str::limit($item->translated_title, 50) }}
                                                         </a>
@@ -167,7 +167,7 @@
                         <!-- Thông tin tác giả -->
                         <div class="bd-author flex flex-col sm:flex-row items-center bg-gray-50 p-6 rounded-lg">
                             <div class="avatar-pic w-24 h-24 mb-4 sm:mb-0 sm:mr-6">
-                                <img src="/upload/hinhdaidien/default.png" alt="Avatar"
+                                <img src="{{ asset('upload/hinhdaidien/default.png') }}" alt="Avatar"
                                     class="w-full h-full object-cover rounded-full">
                             </div>
                             <div class="avatar-text">

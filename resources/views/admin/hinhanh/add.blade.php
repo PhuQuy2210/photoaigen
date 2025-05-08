@@ -89,7 +89,7 @@
         </div>
 
         <div class="card-footer bg-light d-flex justify-content-between">
-            <a href="/admin/hinhanh/list" class="btn btn-primary">Danh Sách</a>
+            <a href="{{ route('hinhanh.list') }}" class="btn btn-primary">Danh Sách</a>
             <button type="submit" class="btn btn-primary">Thêm Ảnh</button>
         </div>
     </form>

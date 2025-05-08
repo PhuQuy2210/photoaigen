@@ -22,9 +22,10 @@
                 <!-- /.login-logo -->
                 <div class="card ">
                     <div class="card-body login-card-body">
-                        <form action="/admin/users/register/store" method="post" onsubmit="return validatePasswords()">
+                        <form action="{{ route('users.register.store') }}" method="post">
                             <div class="input-group mb-3 d-flex align-items-center">
-                                <input type="text" name="name" class="form-control" placeholder="fullname" required>
+                                <input type="text" name="name" class="form-control" placeholder="fullname"
+                                    required>
                                 <div class="input-group-append ms-3">
                                     <div class="input-group-text">
                                         <span class="fas fa-user line-height-2"></span>
@@ -49,8 +50,8 @@
                                 </div>
                             </div>
                             <div class="input-group mb-3 d-flex align-items-center">
-                                <input type="password" name="confirm_password" id="confirm_password" class="form-control"
-                                    placeholder="Confirm Password" required>
+                                <input type="password" name="confirm_password" id="confirm_password"
+                                    class="form-control" placeholder="Confirm Password" required>
                                 <div class="input-group-append ms-3">
                                     <div class="input-group-text">
                                         <span class="fas fa-lock line-height-2"></span>
@@ -72,8 +73,8 @@
 
                             <div class="row">
                                 <div class="col-12">
-                                    <p class="small fw-bold mt-2 pt-1 mb-0">Quay lại đăng nhập? <a href="/admin/users/login"
-                                            class="link-danger">Login</a></p>
+                                    <p class="small fw-bold mt-2 pt-1 mb-0">Quay lại đăng nhập? <a
+                                            href="{{ route('login') }}" class="link-danger">Login</a></p>
                                 </div>
                             </div>
                             @csrf
@@ -87,4 +88,5 @@
     @include('admin.footer')
 </body>
 za
+
 </html>

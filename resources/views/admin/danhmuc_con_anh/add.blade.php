@@ -24,7 +24,7 @@
 
         <div class="card-footer bg-light d-flex justify-content-between">
             <button type="submit" class="btn btn-primary">Tạo Danh Mục</button>
-            <a href="/admin/danhmuccon_anh/list" class="btn btn-primary">Danh Sách</a>
+            <a href="{{ route('danhmuccon.index') }}" class="btn btn-primary">Danh Sách</a>
         </div>
     </form>
 @endsection

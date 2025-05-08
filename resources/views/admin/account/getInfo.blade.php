@@ -13,8 +13,9 @@
                             <!-- Left section: Avatar and name -->
                             <div
                                 class="col-md-4 bg-primary text-white d-flex flex-column align-items-center justify-content-center p-4 rounded-start">
-                                <img src="{{ $userDetail->avatar_url ?? '/upload/hinhdaidien/default.png' }}" alt="Avatar"
-                                    class="rounded-circle mb-3 border border-white" width="120" height="120">
+                                <img src="{{ asset($userDetail->avatar_url ?? 'upload/hinhdaidien/default.png') }}"
+                                    alt="Avatar" class="rounded-circle mb-3 border border-white" width="120"
+                                    height="120">
                                 <h4 class="mb-0">{{ Auth::user()->name }}</h4>
                                 {{-- <small>Mã số: {{ Auth::user()->MaSo }}</small> --}}
                             </div>
@@ -80,6 +81,8 @@
                     <a href="/account-user/edit-user" class="btn btn-secondary">Đổi mật khẩu</a>
                 @endif --}}
                 <a href="/images-user-like/{{ Auth::user()->id }}" class="btn btn-primary">Bộ sưu tập</a>
+                <a href="{{ route('images.userLike', Auth::user()->id) }}" class="btn btn-primary">Bộ sưu tập</a>
+
             </div>
         </div>
     </div>

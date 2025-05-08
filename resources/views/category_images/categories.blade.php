@@ -4,7 +4,7 @@
     <div class="box-category_child">
         <div class="breadcrumb-option pl-2">
             <div class="bo-links">
-                <a href="/"><i class="fa fa-home"></i> Home</a>
+                <a href="{{ route('home') }}"><i class="fa fa-home"></i> Home</a>
                 <i class="bi bi-chevron-right"></i>
                 <span>{{ $danhmucID->translated_name }}</span>
             </div>
@@ -16,7 +16,7 @@
         </h2>
         @foreach ($danhmuccons as $danhmuc)
             <div class="category_child btn-group mt-3 pl-2" role="group">
-                <a href="/images-categories-child/{{ $danhmuc->id }}"
+                <a href="{{ route('images.categoriesChild', ['id' => $danhmuc->id]) }}"
                     class="btn btn-custom">{{ $danhmuc->translated_name }}</a>
             </div>
         @endforeach

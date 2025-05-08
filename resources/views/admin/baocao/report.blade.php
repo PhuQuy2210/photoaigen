@@ -7,7 +7,7 @@
                 <div class="col-lg-12">
                     <div class="box-report p-4 shadow rounded bg-white pt-2 pe-2">
                         <div class="text-end">
-                            <a href="/admin/baocao/list" class="btn btn-primary">Quay lại</a>
+                            <a href="{{ route('baocao.list') }}" class="btn btn-primary">Quay lại</a>
                         </div>
 
                         <h3 class="mb-4 text-center">Thông báo vi phạm bản quyền</h3>
@@ -36,21 +36,22 @@
                                 <!-- Nút kích hoạt / vô hiệu hóa hình ảnh -->
                                 @if ($baocao->kiemduyet == 1)
                                     <a href="javascript:void(0);" class="btn btn-sm btn-success me-2"
-                                        onclick="toggleActive({{ $baocao->id }}, '/admin/baocao/disable')">
+                                        onclick="toggleActive({{ $baocao->id }}, '{{ route('baocao.disable') }}')">
                                         <i class="fas fa-eye"></i> Đã kiểm duyệt
                                     </a>
                                 @else
                                     <a href="javascript:void(0);" class="btn btn-sm btn-warning me-2"
-                                        onclick="toggleActive({{ $baocao->id }}, '/admin/baocao/enable')">
+                                        onclick="toggleActive({{ $baocao->id }}, '{{ route('baocao.enable') }}')">
                                         <i class="fas fa-eye-slash"></i> Kiểm duyệt
                                     </a>
                                 @endif
 
                                 <!-- Nút xóa hình ảnh vi phạm -->
                                 <a href="#" class="btn btn-sm btn-danger" title="Xác nhận xóa ảnh"
-                                    onclick="delete_report_img({{ $baocao->hinhanh_id }}, '/admin/baocao/destroy_img')">
+                                    onclick="delete_report_img({{ $baocao->hinhanh_id }}, '{{ route('baocao.destroy_img') }}')">
                                     <i class="fa-solid fa-image"></i> Xóa ảnh
                                 </a>
+
                             </div>
                         </div>
 
@@ -98,7 +99,8 @@
                                     <label for="originalContent" class="form-label"><strong>Liên kết đến hình ảnh
                                             gốc</strong></label>
                                     <input type="url" name="url" class="form-control" id="originalContent"
-                                        value="{{ $baocao->full_url }}" placeholder="Dán liên kết đến nội dung gốc" required>
+                                        value="{{ $baocao->full_url }}" placeholder="Dán liên kết đến nội dung gốc"
+                                        required>
                                 </div>
                             </div>
                         </div>

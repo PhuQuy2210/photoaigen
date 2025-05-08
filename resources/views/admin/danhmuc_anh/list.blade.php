@@ -24,11 +24,11 @@
                     </td>
                     <td style="text-align: center">
                         <!-- Các thao tác như chỉnh sửa hoặc xóa tài khoản -->
-                        <a href="/admin/danhmucanh/edit/{{ $danhmuc->id }}" class="btn btn-sm btn-warning me-1"><i
+                        <a href="{{ route('menus.show', $danhmuc->id) }}" class="btn btn-sm btn-warning me-1"><i
                                 class="fas fa-edit"></i></a>
                         <a href="#" class="btn btn-sm btn-danger"
-                            onclick="deleteDanhmuc({{ $danhmuc->id }}, '/admin/danhmucanh/destroy')"><i
-                                class="fas fa-trash"></i>
+                            onclick="deleteDanhmuc({{ $danhmuc->id }}, '{{ route('menus.destroy') }}')">
+                            <i class="fas fa-trash"></i>
                         </a>
                     </td>
                 </tr>
@@ -37,8 +37,7 @@
         <tfoot>
             <tr>
                 <div class="bg-light ">
-                    <a href="/admin/danhmucanh/add" class="btn btn-sm btn-primary add-catagory mt-3 mb-2">
-                        {{-- <i class="fas fa-plus"></i>  --}}
+                    <a href="{{ route('menus.create') }}" class="btn btn-sm btn-primary add-catagory mt-3 mb-2">
                         Thêm danh mục
                     </a>
                 </div>

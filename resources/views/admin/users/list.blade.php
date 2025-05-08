@@ -46,13 +46,13 @@
                         {{-- Chỉ hiển thị nút phân quyền với tài khoản Người dùng --}}
                         @if ($user->role_id != 0)
                             <a class="btn btn-sm btn-primary" onclick="return checkRole({{ Auth::user()->role_id }})"
-                                href="/admin/users/upgrade/{{ $user->id }}">
+                                href="{{ route('users.upgrade', $user->id) }}">
                                 Nâng quyền
                             </a>
                         @endif
                         @if ($user->role_id == 1)
                             <a class="btn btn-sm btn-secondary" onclick="return checkRole({{ Auth::user()->role_id }})"
-                                href="/admin/users/downgrade/{{ $user->id }}">
+                                href="{{ route('users.downgrade', $user->id) }}">
                                 Hạ quyền
                             </a>
                         @endif
@@ -60,12 +60,12 @@
                     <td>
                         {{-- Nút khóa / mở khóa tài khoản --}}
                         @if ($user->is_active == 1 && $user->role_id != 0)
-                            <a href="/admin/users/lock/{{ $user->id }}" class="btn btn-sm btn-warning"
+                            <a href="{{ route('users.lock', $user->id) }}" class="btn btn-sm btn-warning"
                                 onclick="return checkRole({{ Auth::user()->role_id }})">
                                 <i class="fas fa-lock"></i>
                             </a>
                         @elseif ($user->role_id != 0)
-                            <a href="/admin/users/unlock/{{ $user->id }}" class="btn btn-sm btn-success"
+                            <a href="{{ route('users.unlock', $user->id) }}" class="btn btn-sm btn-success"
                                 onclick="return checkRole({{ Auth::user()->role_id }})">
                                 <i class="fas fa-lock-open"></i>
                             </a>
@@ -75,9 +75,9 @@
                     <td style="text-align: center">
                         {{-- Nút cập nhật tài khoản --}}
                         <a class="btn btn-sm btn-warning me-1" onclick="return checkRole({{ Auth::user()->role_id }})"
-                            href="/admin/users/edit/{{ $user->id }}">
+                            href="{{ route('users.show', $user->id) }}">
                             <i class="fas fa-edit"></i>
-                        </a>
+                         </a>
                         <span> </span>
                         {{-- Nút xóa tài khoản --}}
                         <a href="#"

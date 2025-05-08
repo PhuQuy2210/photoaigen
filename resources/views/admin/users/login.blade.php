@@ -29,7 +29,7 @@
                         <p class="login-box-msg">Sign in to start your session</p>
                         @include('admin.alert')
 
-                        <form action="/admin/users/login/store" method="post">
+                        <form action="{{ route('xllogin') }}" method="post">
                             @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -75,7 +75,7 @@
                             <span class="w-100 d-block text-center fw-bolder">OR</span>
                             <a href="{{ route('google.login') }}"
                                 class="btn btn-primary btn-lg btn-block rounded-pill shadow-sm d-flex align-items-center justify-content-center">
-                                <img src="/upload/logo/gg.png" alt="Google logo" width="20" height="20"
+                                <img src="{{ asset('upload/logo/gg.png') }}" alt="Google logo" width="20" height="20"
                                     class="me-2">
                                 Đăng nhập với Google
                             </a>

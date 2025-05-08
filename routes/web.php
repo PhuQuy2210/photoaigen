@@ -24,7 +24,7 @@ use App\Http\Controllers\SocialController;
 
 
 Route::get('/auth/google', [SocialController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('/auth/google/callback', [SocialController::class, 'handleGoogleCallback']);
+Route::get('/auth/google/callback', [SocialController::class, 'handleGoogleCallback'])->name('google.store');
 // Route::get('/download-image/{id}', [ImageController::class, 'download'])->name('download.image');
 Route::get('/download', [ImageController::class, 'download'])->name('download.image');
 
@@ -56,50 +56,51 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
     // Route::get('/load-more-images', [ControllersMainController::class, 'loadMoreImages'])->name('load.more.images');
 
     // cụm danh mục
-    Route::get('/images-popular', [ControllersMainController::class, 'popular']);
-    Route::get('/images-viewCount', [ControllersMainController::class, 'viewCount']);
-    Route::get('/images-random', [ControllersMainController::class, 'random']);
-    Route::get('/images-vertical', [ControllersMainController::class, 'verticalImage']);
-    Route::get('/images-horizontal', [ControllersMainController::class, 'horizontalmage']);
+    Route::get('/images-popular', [ControllersMainController::class, 'popular'])->name('images.popular');
+    Route::get('/images-viewCount', [ControllersMainController::class, 'viewCount'])->name('images.viewCount');
+    Route::get('/images-random', [ControllersMainController::class, 'random'])->name('images.random');
+    Route::get('/images-vertical', [ControllersMainController::class, 'verticalImage'])->name('images.vertical');
+    Route::get('/images-horizontal', [ControllersMainController::class, 'horizontalmage'])->name('images.horizontal');
 
     // lấy ảnh theo danh mục
-    Route::get('/images-categories/{id}', [ControllersMainController::class, 'category_image']);
+    Route::get('/images-categories/{id}', [ControllersMainController::class, 'category_image'])->name('images.categories');
+
     // lấy ảnh theo danh mục con
-    Route::get('/images-categories-child/{id}', [ControllersMainController::class, 'category_image_chils']);
-    //tăng lượt xem 
-    Route::post('/update-view/{id}', [HinhAnhController::class, 'updateView']);
+    Route::get('/images-categories-child/{id}', [ControllersMainController::class, 'category_image_chils'])->name('images.categoriesChild');
+
+    // tăng lượt xem
+    Route::post('/update-view/{id}', [HinhAnhController::class, 'updateView'])->name('images.updateView');
 
     // trang tin tức
     Route::prefix('blog')->group(function () {
-        Route::get('/', [BlogController::class, 'index'])->name('blog');
-        Route::get('/blogdetail/{id}', [BlogController::class, 'blogdetail']);
-        Route::get('/popular', [BlogController::class, 'blog_popular']);
-        Route::get('/category/{id}', [BlogController::class, 'blog_category'])->name('danhmuc.category');
-        
+        Route::get('/', [BlogController::class, 'index'])->name('blog.index');
+        Route::get('/blogdetail/{id}', [BlogController::class, 'blogdetail'])->name('blog.detail');
+        Route::get('/popular', [BlogController::class, 'blog_popular'])->name('blog.popular');
+        Route::get('/category/{id}', [BlogController::class, 'blog_category'])->name('blog.category');
     });
 
-    //tăng lượt like
-    Route::post('/like-image', [HinhAnhController::class, 'likeImage']);
+    // tăng lượt like
+    Route::post('/like-image', [HinhAnhController::class, 'likeImage'])->name('images.like');
 
-    //kiểm tra có đăng nhập chưa nếu chưa thì code tự hiểu chuyển hướng đến trang login
+    // kiểm tra có đăng nhập chưa
     Route::middleware(['auth'])->group(function () {
         // Bộ sưu tập
-        Route::get('/images-user-like/{id}', [ControllersMainController::class, 'userlike']);
-        
+        Route::get('/images-user-like/{id}', [ControllersMainController::class, 'userlike'])->name('images.userLike');
+
         // Báo cáo hình ảnh
-        Route::get('/baocao/{idimg}', [BaocaoController::class, 'report']);
-        Route::post('/baocao/store', [BaocaoController::class, 'baocao_Store']);
+        Route::get('/baocao/{idimg}', [BaocaoController::class, 'report'])->name('images.report');
+        Route::post('/baocao/store', [BaocaoController::class, 'baocao_Store'])->name('images.reportStore');
 
-        //đăng xuất
-        Route::get('/users/logout', [LoginController::class, 'logout'])->name('logout');
+        // đăng xuất
+        Route::get('/users/logout', [LoginController::class, 'logout'])->name('users.logout');
 
-        #account 
+        // account
         Route::prefix('account-user')->group(function () {
-            Route::get('info-user', [Account::class, 'getInfo_user']);
-            Route::get('edit-user', [Account::class, 'changePass_user']);
-            Route::post('edit-user', [Account::class, 'handelChangePass_user']);
-            Route::get('edit-info', [Account::class, 'changeInfo_user']);
-            Route::post('edit-info', [Account::class, 'handelChangeInfo_user']);
+            Route::get('info-user', [Account::class, 'getInfo_user'])->name('account.infoUser');
+            Route::get('edit-user', [Account::class, 'changePass_user'])->name('account.editUser');
+            Route::post('edit-user', [Account::class, 'handelChangePass_user'])->name('account.handleEditUser');
+            Route::get('edit-info', [Account::class, 'changeInfo_user'])->name('account.editInfo');
+            Route::post('edit-info', [Account::class, 'handelChangeInfo_user'])->name('account.handleEditInfo');
         });
 
         Route::prefix('admin')->middleware(\App\Http\Middleware\CheckRole::class)->group(function () {
@@ -110,8 +111,8 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
                 Route::get('info', [Account::class, 'getInfo'])->name('info');
                 Route::get('edit', [Account::class, 'changePass'])->name('account.changePass');
                 Route::post('edit', [Account::class, 'handelChangePass'])->name('account.handelChangePass');
-                Route::get('edit-info-admin', [Account::class, 'changeInfo_admin']);
-                Route::post('edit-info-admin', [Account::class, 'handelChangeInfo_admin']);
+                Route::get('edit-info-admin', [Account::class, 'changeInfo_admin'])->name('account.changeInfo_admin');
+                Route::post('edit-info-admin', [Account::class, 'handelChangeInfo_admin'])->name('account.handelChangeInfo_admin');
             });
 
             #users 
@@ -123,72 +124,72 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
                 Route::get('downgrade/{id}', [UserController::class, 'downgradeRole'])->name('users.downgrade');
                 Route::get('lock/{id}', [UserController::class, 'lockAccount'])->name('users.lock');
                 Route::get('unlock/{id}', [UserController::class, 'unlockAccount'])->name('users.unlock');
-                Route::get('edit/{id}', [UserController::class, 'show']);
-                Route::post('edit/{id}', [UserController::class, 'update']);
+                Route::get('edit/{id}', [UserController::class, 'show'])->name('users.show');
+                Route::post('edit/{id}', [UserController::class, 'update'])->name('users.update');
                 Route::delete('destroy', [UserController::class, 'destroy'])->name('users.destroy');
             });
 
             #danh mục ảnh
             Route::prefix('danhmucanh')->group(function () {
-                Route::get('add', [DanhmucanhController::class, 'create']);
+                Route::get('add', [DanhmucanhController::class, 'create'])->name('menus.create');
                 Route::post('add', [DanhmucanhController::class, 'store'])->name('menus.store');
                 Route::get('list', [DanhmucanhController::class, 'index'])->name('menus.list');
-                Route::get('edit/{danhmuc}', [DanhmucanhController::class, 'show']);
-                Route::post('edit/{danhmuc}', [DanhmucanhController::class, 'update']);
-                Route::delete('destroy', [DanhmucanhController::class, 'destroy']);
+                Route::get('edit/{danhmuc}', [DanhmucanhController::class, 'show'])->name('menus.show');
+                Route::post('edit/{danhmuc}', [DanhmucanhController::class, 'update'])->name('menus.update');
+                Route::delete('destroy', [DanhmucanhController::class, 'destroy'])->name('menus.destroy');
             });
 
             #danh mục con của ảnh
             Route::prefix('danhmuccon_anh')->group(function () {
-                Route::get('add', [Danhmuccon_anhController::class, 'create']);
-                Route::post('add', [Danhmuccon_anhController::class, 'store']);
-                Route::get('list', [Danhmuccon_anhController::class, 'index']);
-                Route::get('edit/{danhmuc}', [Danhmuccon_anhController::class, 'show']);
-                Route::post('edit/{danhmuc}', [Danhmuccon_anhController::class, 'update']);
-                Route::delete('destroy', [Danhmuccon_anhController::class, 'destroy']);
+                Route::get('add', [Danhmuccon_anhController::class, 'create'])->name('danhmuccon.create');
+                Route::post('add', [Danhmuccon_anhController::class, 'store'])->name('danhmuccon.store');
+                Route::get('list', [Danhmuccon_anhController::class, 'index'])->name('danhmuccon.index');
+                Route::get('edit/{danhmuc}', [Danhmuccon_anhController::class, 'show'])->name('danhmuccon.show');
+                Route::post('edit/{danhmuc}', [Danhmuccon_anhController::class, 'update'])->name('danhmuccon.update');
+                Route::delete('destroy', [Danhmuccon_anhController::class, 'destroy'])->name('danhmuccon.destroy');
             });
 
-            #danh mục tin
+            # danh mục tin
             Route::prefix('danhmuctin')->group(function () {
-                Route::get('add', [DanhmuctinController::class, 'create']);
-                Route::post('add', [DanhmuctinController::class, 'store']);
-                Route::get('list', [DanhmuctinController::class, 'index']);
-                Route::get('edit/{danhmuc}', [DanhmuctinController::class, 'show']);
-                Route::post('edit/{danhmuc}', [DanhmuctinController::class, 'update']);
-                Route::delete('destroy', [DanhmuctinController::class, 'destroy']);
+                Route::get('add', [DanhmuctinController::class, 'create'])->name('danhmuctin.add');
+                Route::post('add', [DanhmuctinController::class, 'store'])->name('danhmuctin.store');
+                Route::get('list', [DanhmuctinController::class, 'index'])->name('danhmuctin.list');
+                Route::get('edit/{danhmuc}', [DanhmuctinController::class, 'show'])->name('danhmuctin.edit');
+                Route::post('edit/{danhmuc}', [DanhmuctinController::class, 'update'])->name('danhmuctin.update');
+                Route::delete('destroy', [DanhmuctinController::class, 'destroy'])->name('danhmuctin.destroy');
             });
 
-            #Hình ảnh
+            # Hình ảnh
             Route::prefix('hinhanh')->group(function () {
-                Route::get('list', [HinhAnhController::class, 'index'])->name('hinhanh.index');
-                Route::get('add', [HinhAnhController::class, 'create'])->name('hinhanh.create');
+                Route::get('list', [HinhAnhController::class, 'index'])->name('hinhanh.list');
+                Route::get('add', [HinhAnhController::class, 'create'])->name('hinhanh.add');
                 Route::post('add', [HinhAnhController::class, 'store'])->name('hinhanh.store');
-                Route::post('disable', [HinhAnhController::class, 'disable']);
-                Route::post('enable', [HinhAnhController::class, 'enable']);
-                Route::get('edit/{hinhanh}', [HinhAnhController::class, 'show']);
-                Route::post('edit/{hinhanh}', [HinhAnhController::class, 'update']);
-                Route::delete('destroy', [HinhAnhController::class, 'destroy']);
+                Route::post('disable', [HinhAnhController::class, 'disable'])->name('hinhanh.disable');
+                Route::post('enable', [HinhAnhController::class, 'enable'])->name('hinhanh.enable');
+                Route::get('edit/{hinhanh}', [HinhAnhController::class, 'show'])->name('hinhanh.edit');
+                Route::post('edit/{hinhanh}', [HinhAnhController::class, 'update'])->name('hinhanh.update');
+                Route::delete('destroy', [HinhAnhController::class, 'destroy'])->name('hinhanh.destroy');
             });
 
-            #Tin tức
+            # Tin tức
             Route::prefix('tintuc')->group(function () {
-                Route::get('add', [TinTucController::class, 'create']);
+                Route::get('add', [TinTucController::class, 'create'])->name('tintuc.add');
                 Route::post('add', [TinTucController::class, 'store'])->name('tintuc.store');
-                Route::get('list', [TinTucController::class, 'index']);
-                Route::post('disable', [TinTucController::class, 'disable']);
-                Route::post('enable', [TinTucController::class, 'enable']);
-                Route::get('edit/{tintuc}', [TinTucController::class, 'show']);
-                Route::post('edit/{tintuc}', [TinTucController::class, 'update']);
-                Route::delete('destroy', [TinTucController::class, 'destroy']);
+                Route::get('list', [TinTucController::class, 'index'])->name('tintuc.list');
+                Route::post('disable', [TinTucController::class, 'disable'])->name('tintuc.disable');
+                Route::post('enable', [TinTucController::class, 'enable'])->name('tintuc.enable');
+                Route::get('edit/{tintuc}', [TinTucController::class, 'show'])->name('tintuc.edit');
+                Route::post('edit/{tintuc}', [TinTucController::class, 'update'])->name('tintuc.update');
+                Route::delete('destroy', [TinTucController::class, 'destroy'])->name('tintuc.destroy');
             });
 
-            #báo cáo
+            # Báo cáo
             Route::prefix('baocao')->group(function () {
-                Route::get('list', [BaocaoAdminController::class, 'index']);
-                Route::delete('destroy', [BaocaoAdminController::class, 'destroy']);
-                Route::delete('destroy_img', [BaocaoAdminController::class, 'destroy_img']);
-                Route::post('disable', [BaocaoAdminController::class, 'disable']);
-                Route::post('enable', [BaocaoAdminController::class, 'enable']);
+                Route::get('list', [BaocaoAdminController::class, 'index'])->name('baocao.list');
+                Route::delete('destroy', [BaocaoAdminController::class, 'destroy'])->name('baocao.destroy');
+                Route::delete('destroy_img', [BaocaoAdminController::class, 'destroy_img'])->name('baocao.destroy_img');
+                Route::post('disable', [BaocaoAdminController::class, 'disable'])->name('baocao.disable');
+                Route::post('enable', [BaocaoAdminController::class, 'enable'])->name('baocao.enable');
                 Route::get('/{id}', [BaocaoAdminController::class, 'report'])->name('admin.baocao');
                 Route::post('/store', [BaocaoAdminController::class, 'baocao_Store'])->name('admin.baocao.store');
             });
@@ -215,4 +216,4 @@ Route::get('/switch-language/{lang}', function ($lang) {
 Route::post('/save-theme', function (Request $request) {
     Session::put('theme', $request->theme);
     return response()->json(['status' => 'success']);
-});
+})->name('save.theme');

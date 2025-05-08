@@ -12,7 +12,7 @@
             <p>{{ __('review.tos_accept_content') }}</p>
 
             <h4 class="fw-bold mt-5 mb-3"><i class="bi bi-image text-success"></i> {{ __('review.tos_image_title') }}</h4>
-            <p>{{ __('review.tos_image_content') }} <a href="/contact_us">{{ __('review.contact_title') }}</a>.</p>
+            <p>{{ __('review.tos_image_content') }} <a href="{{ route('home.contact_us') }}">{{ __('review.contact_title') }}</a>.</p>
 
             <h4 class="fw-bold mt-5 mb-3"><i class="bi bi-shield-lock-fill text-danger"></i>
                 {{ __('review.tos_privacy_title') }}</h4>

@@ -4,7 +4,7 @@
         <div class="row align-items-center background-header color-header">
             <div class="col-3 header-padding">
                 <div class="logo">
-                    <a href="{{ url('/') }}">
+                    <a href="{{ route('home') }}">
                         <img src="{{ asset('template/img/logo.png') }}" alt="LOGO">
                     </a>
                 </div>
@@ -13,7 +13,7 @@
                 <div class="show-from-600">
                     <nav class="nav-menu mobile-menu">
                         <ul class="d-flex flex-lg-row justify-content-center">
-                            <li><a href="{{ url('/') }}"> {{ __('messages.wallpaper') }}</a></li>
+                            <li><a href="{{ route('home') }}"> {{ __('messages.wallpaper') }}</a></li>
                             <li><a href="{{ route('blog') }}"> {{ __('messages.news') }}</a></li>
                         </ul>
                     </nav>
@@ -32,11 +32,10 @@
                             <a class="dropdown-toggle profile-pic d-flex align-items-center" data-bs-toggle="dropdown"
                                 href="#" aria-expanded="false">
                                 <div class="avatar-sm">
-                                    <img src="{{ $userDetail->avatar_url ?? '/upload/hinhdaidien/default.png' }}"
-                                         alt="Avatar"
-                                         class="avatar-img rounded-circle"
-                                         onerror="this.onerror=null;this.src='/upload/hinhdaidien/default.png';" />
-                                </div>                                
+                                    <img src="{{ asset($userDetail->avatar_url ?? 'upload/hinhdaidien/default.png') }}"
+                                        alt="Avatar" class="avatar-img rounded-circle"
+                                        onerror="this.onerror=null;this.src='{{ asset('upload/hinhdaidien/default.png') }}';" />
+                                </div>
                                 <span class="profile-username ms-2">
                                     <span class="op-7">Hi,</span>
                                     <span class="fw-bold">{{ Auth::user()->name }}</span>
@@ -48,13 +47,13 @@
                                     <li>
                                         <div class="user-box">
                                             <div class="avatar-lg">
-                                                <img src="{{ $userDetail->avatar_url ?? '/upload/hinhdaidien/default.png' }}"
+                                                <img src="{{ asset($userDetail->avatar_url ?? 'upload/hinhdaidien/default.png') }}"
                                                     alt="Avatar" class="avatar-img rounded" />
                                             </div>
                                             <div class="u-text">
                                                 <h4>{{ Auth::user()->name }}</h4>
                                                 <p>{{ Auth::user()->email }}</p>
-                                                <a href="/account-user/info-user"
+                                                <a href="{{ route('account.infoUser') }}"
                                                     class="btn btn-xs btn-secondary btn-sm p-2">{{ __('messages.account') }}</a>
                                             </div>
                                         </div>
@@ -62,15 +61,15 @@
                                     <li class="font-profi" style="width: 100%">
                                         @if (Auth::user()->role_id == 0)
                                             <a class="dropdown-item p-2"
-                                                href="/admin/">{{ __('messages.admin_panel') }}</a>
+                                                href="{{ route('admin') }}">{{ __('messages.admin_panel') }}</a>
                                         @endif
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item p-2 {{ request()->is('images-user-like/*') ? 'active' : '' }}"
-                                            href="/images-user-like/{{ Auth::user()->id }}">{{ __('messages.gallery') }}</a>
-                                        {{-- <a class="dropdown-item p-2 {{ request()->is('account-user/*') ? 'active' : '' }}"
-                                            href="/account-user/info-user">{{ __('messages.edit_info') }}</a> --}}
+                                            href="{{ route('images.userLike', Auth::user()->id) }}">
+                                            {{ __('messages.gallery') }}
+                                        </a>
                                         <a class="dropdown-item p-2"
-                                            href="/users/logout">{{ __('messages.logout') }}</a>
+                                            href="{{ route('users.logout') }}">{{ __('messages.logout') }}</a>
                                     </li>
                                 </div>
                             </ul>
@@ -94,7 +93,7 @@
                             class="btn btn-hover custom-login custom-min-width color-header">{{ __('messages.login') }}</a>
                     </div>
                 @endif
-                
+
             </div>
         </div>
 
@@ -112,26 +111,26 @@
                 <div class="category-list collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto navbar-dropdown">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/"
+                            <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}"
                                 data-sort="created_at" data-filter="">
                                 {{ __('messages.latest') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('images-popular') ? 'active' : '' }}"
-                                href="/images-popular" data-sort="like_count" data-filter="">
+                                href="{{ route('images.popular') }}" data-sort="like_count" data-filter="">
                                 {{ __('messages.popular') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('images-viewCount') ? 'active' : '' }}"
-                                href="/images-viewCount" data-sort="like_count" data-filter="">
+                                href="{{ route('images.viewCount') }}" data-sort="like_count" data-filter="">
                                 {{ __('messages.view_count') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('images-random') ? 'active' : '' }}"
-                                href="/images-random" data-sort="random" data-filter="">
+                                href="{{ route('images.random') }}" data-sort="random" data-filter="">
                                 {{ __('messages.random') }}
                             </a>
                         </li>
@@ -143,22 +142,22 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item {{ request()->is('images-random') ? 'active' : '' }}"
-                                    href="/images-random" data-sort="random" data-filter="">
+                                    href="{{ route('images.random') }}" data-sort="random" data-filter="">
                                     {{ __('messages.any') }}
                                 </a>
                                 <a class="dropdown-item {{ request()->is('images-vertical') ? 'active' : '' }}"
-                                    href="/images-vertical" data-sort="direction" data-filter="0">
+                                    href="{{ route('images.vertical') }}" data-sort="direction" data-filter="0">
                                     {{ __('messages.vertical') }}
                                 </a>
                                 <a class="dropdown-item {{ request()->is('images-horizontal') ? 'active' : '' }}"
-                                    href="/images-horizontal" data-sort="direction" data-filter="1">
+                                    href="{{ route('images.horizontal') }}" data-sort="direction" data-filter="1">
                                     {{ __('messages.horizontal') }}
                                 </a>
                             </div>
                         </li>
                     </ul>
                 </div>
-                
+
                 {{-- language --}}
                 <div class="box_language" title="{{ __('messages.languages') }}">
                     {{-- Cho màn hình lớn --}}

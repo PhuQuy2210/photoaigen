@@ -7,7 +7,7 @@
                 <div class="">
                     <div class="col-lg-12 p-0">
                         <div class="bo-links">
-                            <a href="/blog"><i class="fa fa-home"></i> Home</a>
+                            <a href="{{ route('blog.index') }}"><i class="fa fa-home"></i> Home</a>
                             <i class="bi bi-chevron-right"></i>
                             <span>Blog</span>
 
@@ -26,11 +26,9 @@
                 <span>{{ __('messages.News_category') }}:</span>
             </div>
             <div class="btn-group catagory-btn" role="group" aria-label="Button group with nested dropdown">
-                {{-- <!-- Nút phổ biến -->
-                <a href="/blog/popular" class="btn btn-primary rounded btn-link-a">{{ __('messages.Blog_popular') }}</a> --}}
-                <a href="/blog/popular"
+                <!-- Nút phổ biến -->
+                <a href="{{ route('blog.popular') }}"
                     class="neon-button mr-2 d-flex align-items-center">{{ __('messages.Blog_popular') }}</a>
-
                 <!-- Dropdown thể loại -->
                 <div class="btn-group" role="group">
                     <button type="button" class="neon-button dropdown-toggle d-flex align-items-center"
@@ -41,7 +39,7 @@
                         {{-- Tạo danh sách danh mục ảnh --}}
                         @foreach ($danhmucs as $item)
                             <li>
-                                <a class="dropdown-item text-dark" href="/blog/category/{{ $item->id }}">
+                                <a class="dropdown-item text-dark" href="{{ route('blog.category', ['id' => $item->id]) }}">
                                     {{ $item->translated_name }}
                                 </a>
                             </li>
@@ -56,14 +54,13 @@
                 <div class="d-flex flex-wrap">
                     <div class="col-lg-9">
                         @foreach ($lists as $blog)
-                            <a href="/blog/blogdetail/{{ $blog->id }}">
+                            <a href="{{ route('blog.detail', ['id' => $blog->id]) }}">
                                 <div class="blog-item">
                                     <div class="bi-pic">
-                                        <img src="{{ $blog->first_image_url ?? '/upload/hinhdaidien/default.png' }}"
-                                            onerror="this.onerror=null;this.src='/upload/hinhdaidien/default.png';"
+                                        <img src="{{ asset($blog->first_image_url ?? 'upload/hinhdaidien/default.png') }}"
+                                            onerror="this.onerror=null;this.src='{{ asset('upload/hinhdaidien/default.png') }}';"
                                             alt="Ảnh minh họa">
                                     </div>
-
                                     <div class="bi-text text-justify mr-3">
                                         <div class="label">{{ $blog->category->name ?? 'Uncategorized' }}</div>
                                         <h5>
@@ -72,7 +69,8 @@
                                         <ul>
                                             <li>by <span>{{ $blog->author->name ?? 'Admin' }}</span></li>
                                             <li>{{ $blog->created_at->format('M d, Y') }}</li>
-                                            <li>{{ number_format($blog->view_fake, 0, ',', '.') }} {{ __('messages.view') }}</li>
+                                            <li>{{ number_format($blog->view_fake, 0, ',', '.') }}
+                                                {{ __('messages.view') }}</li>
                                             @if (Auth::check() && Auth::user()->role_id == 0)
                                                 <li>{{ number_format($blog->view, 0, ',', '.') ?? 0 }} View real</li>
                                             @endif
@@ -94,10 +92,10 @@
                                 <h5>{{ __('messages.Other_articles') }}</h5>
                                 <div class="bi-feature-post">
                                     @foreach ($blogs_random as $blog)
-                                        <a href="/blog/blogdetail/{{ $blog->id }}" class="fp-item">
-                                            <div class="fp-pic">
-                                                <img src="{{ $blog->first_image_url ?? '/upload/hinhdaidien/default.png' }}"
-                                                    onerror="this.onerror=null;this.src='/upload/hinhdaidien/default.png';"
+                                        <a href="{{ route('blog.detail', ['id' => $blog->id]) }}" class="fp-item">
+                                            <div class="bi-pic">
+                                                <img src="{{ asset($blog->first_image_url ?? 'upload/hinhdaidien/default.png') }}"
+                                                    onerror="this.onerror=null;this.src='{{ asset('upload/hinhdaidien/default.png') }}';"
                                                     alt="Ảnh minh họa">
                                             </div>
                                             <div class="fp-text text-justify">
@@ -114,10 +112,10 @@
                             <div class="bs-item">
                                 <h5>Instagram</h5>
                                 <div class="bi-insta">
-                                    <img src="/template/img/blog/insta-1.jpg" alt="Instagram 1">
-                                    <img src="/template/img/blog/insta-2.jpg" alt="Instagram 2">
-                                    <img src="/template/img/blog/insta-3.jpg" alt="Instagram 3">
-                                    <img src="/template/img/blog/insta-4.jpg" alt="Instagram 4">
+                                    <img src="{{ asset('template/img/blog/insta-1.jpg') }}" alt="Instagram 1">
+                                    <img src="{{ asset('template/img/blog/insta-2.jpg') }}" alt="Instagram 2">
+                                    <img src="{{ asset('template/img/blog/insta-3.jpg') }}" alt="Instagram 3">
+                                    <img src="{{ asset('template/img/blog/insta-4.jpg') }}" alt="Instagram 4">
                                 </div>
                             </div>
                         </div>

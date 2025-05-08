@@ -11,7 +11,7 @@
                             {{ __('messages.report_instructions') }}
                         </p>
                         <hr>
-                        <form action="/baocao/store" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('images.reportStore') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('POST')
 

@@ -25,11 +25,11 @@
                         @endif
                     </td>
                     <td style="text-align: center">
-                        <a href="/admin/danhmuccon_anh/edit/{{ $danhmuc->id }}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('danhmuccon.show', ['danhmuc' => $danhmuc->id]) }}" class="btn btn-sm btn-warning">
                             <i class="fas fa-edit"></i>
                         </a>
                         <a href="#" class="btn btn-sm btn-danger"
-                            onclick="deleteDanhmuc({{ $danhmuc->id }}, '/admin/danhmuccon_anh/destroy')">
+                            onclick="deleteDanhmuc({{ $danhmuc->id }}, '{{ route('danhmuccon.destroy') }}')">
                             <i class="fas fa-trash"></i>
                         </a>
                     </td>
@@ -40,10 +40,10 @@
         <tfoot>
             <tr>
                 <div class="bg-light ">
-                    <a href="/admin/danhmuccon_anh/add" class="btn btn-sm btn-primary add-catagory mt-3 mb-2">
-                        {{-- <i class="fas fa-plus"></i>  --}}
+                    <a href="{{ route('danhmuccon.create') }}" class="btn btn-sm btn-primary add-catagory mt-3 mb-2">
+                        {{-- <i class="fas fa-plus"></i> --}}
                         Thêm danh mục
-                    </a>
+                    </a>                    
                 </div>
             </tr>
         </tfoot>

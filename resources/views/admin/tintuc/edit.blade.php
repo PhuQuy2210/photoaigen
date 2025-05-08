@@ -121,7 +121,7 @@
         </div>
 
         <div class="card-footer bg-light d-flex justify-content-between">
-            <a href="/admin/tintuc/list" class="btn btn-primary">Danh Sách</a>
+            <a href="{{ route('tintuc.list') }}" class="btn btn-primary">Danh Sách</a>
             <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </form>

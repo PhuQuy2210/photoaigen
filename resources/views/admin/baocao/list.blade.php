@@ -27,15 +27,16 @@
                         {{-- Nút kích hoạt / vô hiệu hóa hình ảnh --}}
                         @if ($report->kiemduyet == 1)
                             <a href="javascript:void(0);" class="btn btn-sm btn-success"
-                                onclick="toggleActive({{ $report->id }}, '/admin/baocao/disable')">
+                                onclick="toggleActive({{ $report->id }}, '{{ route('baocao.disable') }}')">
                                 <i class="fas fa-eye"></i> Đã kiểm duyệt
                             </a>
                         @else
                             <a href="javascript:void(0);" class="btn btn-sm btn-warning"
-                                onclick="toggleActive({{ $report->id }}, '/admin/baocao/enable')">
+                                onclick="toggleActive({{ $report->id }}, '{{ route('baocao.enable') }}')">
                                 <i class="fas fa-eye-slash"></i> Kiểm duyệt
                             </a>
                         @endif
+
                     </td>
                     <td>{{ Auth::user()->email }}</td>
                     <td>
@@ -47,12 +48,12 @@
                     <td style="text-align: center">
                         {{-- Nút xóa report --}}
                         <a href="#" class="btn btn-sm btn-danger" title="Xóa report"
-                            onclick="delete_report({{ $report->id }}, '/admin/baocao/destroy')">
+                            onclick="delete_report({{ $report->id }}, '{{ route('baocao.destroy') }}')">
                             <i class="fas fa-trash"></i>
                         </a>
                         {{-- Nút xóa hình ảnh vi phạm --}}
                         <a href="#" class="btn btn-sm btn-danger" title="Xát nhận xóa ảnh"
-                            onclick="delete_report_img({{ $report->hinhanh_id }}, '/admin/baocao/destroy_img')">
+                            onclick="delete_report_img({{ $report->hinhanh_id }}, '{{ route('baocao.destroy_img') }}')">
                             <i class="fa-solid fa-image"></i>
                         </a>
                     </td>

@@ -3,9 +3,9 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center bg-light">
         <div class="d-flex ms-3">
-            <a href="/admin/hinhanh/add" class="btn btn-sm btn-primary add-catagory">
+            <a href="{{ route('hinhanh.add') }}" class="btn btn-sm btn-primary add-catagory">
                 Thêm ảnh
-            </a>
+            </a>            
         </div>
         <div class="d-flex align-items-center">
             <div class="form-group d-flex align-items-center">

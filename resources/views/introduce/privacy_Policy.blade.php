@@ -40,7 +40,7 @@
                 <li>{{ __('review.privacy_rights_1') }}</li>
                 <li>{{ __('review.privacy_rights_2') }}</li>
             </ul>
-            <p>{{ __('review.privacy_rights_footer') }} <a href="/contact_us">tại đây</a>.</p>
+            <p>{{ __('review.privacy_rights_footer') }} <a href="{{ route('home.contact_us') }}">tại đây</a>.</p>
 
             <h4 class="fw-bold mt-5 mb-3"><i class="bi bi-arrow-clockwise text-info"></i>
                 {{ __('review.privacy_change_title') }}</h4>

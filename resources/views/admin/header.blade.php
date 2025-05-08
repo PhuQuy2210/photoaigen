@@ -7,9 +7,9 @@
 <div class="main-header">
     <div class="main-header-logo">
         <div class="logo-header" data-background-color="dark">
-            <a href="/admin/" class="logo">
-                <img src="/template/admin/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand"
-                    height="20" />
+            <a href="{{ route('admin') }}" class="logo">
+                <img src="{{ asset('template/admin/img/kaiadmin/logo_light.svg') }}" alt="navbar brand"
+                    class="navbar-brand" height="20" />
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -63,7 +63,7 @@
                                 <div class="notif-center">
                                     <a href="#">
                                         <div class="notif-img">
-                                            <img src="/template/admin/img/jm_denis.jpg" alt="Img Profile" />
+                                            <img src="{{ asset('template/admin/img/jm_denis.jpg') }}" alt="Img Profile" />
                                         </div>
                                         <div class="notif-content">
                                             <span class="subject">Jimmy Denis</span>
@@ -73,7 +73,7 @@
                                     </a>
                                     <a href="#">
                                         <div class="notif-img">
-                                            <img src="/template/admin/img/chadengle.jpg" alt="Img Profile" />
+                                            <img src="{{ asset('template/admin/img/chadengle.jpg') }}" alt="Img Profile" />
                                         </div>
                                         <div class="notif-content">
                                             <span class="subject">Chad</span>
@@ -83,7 +83,7 @@
                                     </a>
                                     <a href="#">
                                         <div class="notif-img">
-                                            <img src="/template/admin/img/mlane.jpg" alt="Img Profile" />
+                                            <img src="{{ asset('template/admin/img/mlane.jpg') }}" alt="Img Profile" />
                                         </div>
                                         <div class="notif-content">
                                             <span class="subject">Jhon Doe</span>
@@ -95,7 +95,7 @@
                                     </a>
                                     <a href="#">
                                         <div class="notif-img">
-                                            <img src="/template/admin/img/talha.jpg" alt="Img Profile" />
+                                            <img src="{{ asset('template/admin/img/talha.jpg') }}" alt="Img Profile" />
                                         </div>
                                         <div class="notif-content">
                                             <span class="subject">Talha</span>
@@ -248,8 +248,8 @@
                     <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
                         aria-expanded="false">
                         <div class="avatar-sm">
-                            <img src="{{ $userDetail->avatar_url ?? '/upload/hinhdaidien/default.png' }}" alt="Avatar"
-                                class="avatar-img rounded-circle" />
+                            <img src="{{ asset($userDetail->avatar_url ?? 'upload/hinhdaidien/default.png') }}"
+                                alt="Avatar" class="avatar-img rounded-circle" />
                         </div>
                         <span class="profile-username">
                             <span class="op-7">Hi,</span>
@@ -260,22 +260,22 @@
                         <div class="dropdown-user-scroll scrollbar-outer">
                             <li>
                                 <div class="user-box">
-                                    <div class="avatar-lg">
-                                        <img src="{{ $userDetail->avatar_url ?? '/upload/hinhdaidien/default.png' }}"
+                                    <div class="avatar-lg"> <img
+                                            src="{{ asset($userDetail->avatar_url ?? 'upload/hinhdaidien/default.png') }}"
                                             alt="Avatar" class="avatar-img rounded" />
                                     </div>
                                     <div class="u-text">
                                         <h4>{{ Auth::user()->name }}</h4>
                                         <p class="">{{ Auth::user()->email }}</p>
-                                        <a href="/admin/account/info" class="btn btn-xs btn-secondary btn-sm">View
-                                            Profile</a>
+                                        <a href="{{ route('account.info') }}"
+                                            class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/admin/account/info">Account Setting</a>
-                                <a class="dropdown-item" href="/users/logout">Logout</a>
+                                <a class="dropdown-item" href="{{ route('account.info') }}">Account Setting</a>
+                                <a class="dropdown-item" href="{{ route('users.logout') }}">Logout</a>
                             </li>
                         </div>
                     </ul>

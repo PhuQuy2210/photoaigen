@@ -41,7 +41,7 @@
         </div>
         <div class="card-footer bg-light d-flex justify-content-between">
             <button type="submit" class="btn btn-primary">Cập Nhật Danh Mục</button>
-            <a type="submit" href="/admin/danhmuccon_anh/list" class="btn btn-primary">Danh Sách</a>
+            <a type="submit" href="{{ route('danhmuccon.index') }}" class="btn btn-primary">Danh Sách</a>
         </div>
         @csrf
     </form>

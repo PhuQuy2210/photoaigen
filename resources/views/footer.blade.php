@@ -26,24 +26,28 @@
                 <h5>{{ __('messages.quick_Links') }}</h5>
                 <ul>
                     <li>
-                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/"
+                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}"
                             data-sort="created_at" data-filter="">
                             {{ __('messages.latest') }}
                         </a>
                     </li>
-                    <li><a class="nav-link {{ request()->is('images-popular') ? 'active' : '' }}" href="/images-popular"
-                            data-sort="like_count" data-filter="">
+                    <li>
+                        <a class="nav-link {{ request()->is('images-popular') ? 'active' : '' }}"
+                            href="{{ route('images.popular') }}" data-sort="like_count" data-filter="">
                             {{ __('messages.popular') }}
-                        </a></li>
-                    <li><a class="nav-link {{ request()->is('images-viewCount') ? 'active' : '' }}"
-                            href="/images-viewCount" data-sort="like_count" data-filter="">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link {{ request()->is('images-viewCount') ? 'active' : '' }}"
+                            href="{{ route('images.viewCount') }}" data-sort="like_count" data-filter="">
                             {{ __('messages.view_count') }}
-                        </a></li>
+                        </a>
+                    </li>
                 </ul>
                 <ul>
                     <li>
-                        <a class="nav-link {{ request()->is('images-random') ? 'active' : '' }}" href="/images-random"
-                            data-sort="random" data-filter="">
+                        <a class="nav-link {{ request()->is('images-random') ? 'active' : '' }}"
+                            href="{{ route('images.random') }}" data-sort="random" data-filter="">
                             {{ __('messages.random') }}
                         </a>
                     </li>
@@ -53,13 +57,16 @@
                             {{ __('messages.orientation') }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/images-random" data-sort="random" data-filter="">
+                            <a class="dropdown-item" href="{{ route('images.random') }}" data-sort="random"
+                                data-filter="">
                                 {{ __('messages.any') }}
                             </a>
-                            <a class="dropdown-item" href="/images-vertical" data-sort="direction" data-filter="0">
+                            <a class="dropdown-item" href="{{ route('images.vertical') }}" data-sort="direction"
+                                data-filter="0">
                                 {{ __('messages.vertical') }}
                             </a>
-                            <a class="dropdown-item" href="/images-horizontal" data-sort="direction" data-filter="1">
+                            <a class="dropdown-item" href="{{ route('images.horizontal') }}" data-sort="direction"
+                                data-filter="1">
                                 {{ __('messages.horizontal') }}
                             </a>
                         </div>
@@ -72,10 +79,10 @@
             <div class="fs-widget cta-text">
                 <h5>{{ __('messages.introduce') }}</h5>
                 <div class="gioihieu">
-                    <li><a href="/about_us">{{ __('messages.about_Us') }}</a></li>
-                    <li><a href="/contact_us">{{ __('messages.contact_us') }}</a></li>
-                    <li><a href="/terms_of_Service">{{ __('messages.terms_of_Service') }}</a></li>
-                    <li><a href="/privacy_Policy">{{ __('messages.privacy_Policy') }}</a></li>
+                    <li><a href="{{ route('home.about_us') }}">{{ __('messages.about_Us') }}</a></li>
+                    <li><a href="{{ route('home.contact_us') }}">{{ __('messages.contact_us') }}</a></li>
+                    <li><a href="{{ route('home.terms_of_Service') }}">{{ __('messages.terms_of_Service') }}</a></li>
+                    <li><a href="{{ route('home.privacy_Policy') }}">{{ __('messages.privacy_Policy') }}</a></li>
                 </div>
             </div>
         </div>

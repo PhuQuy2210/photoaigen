@@ -9,8 +9,6 @@
 <link href="https://fonts.googleapis.com/css?family=Quantico:400,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
-{{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script> --}}
-{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Css Styles -->
@@ -27,10 +25,5 @@
 <!-- CSS Files -->
 <link rel="stylesheet" href="{{ asset('template/admin/css/plugins.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('template/admin/css/kaiadmin.min.css') }}" />
-{{-- <link rel="stylesheet" href="/template/css/style.css" /> --}}
-{{-- <link rel="stylesheet" href="/template/sass/style.scss" /> --}}
-
-<!-- CSS Just for demo purpose, don't include it in your project -->
-{{-- <link rel="stylesheet" href="/template/admin/css/demo.css" /> --}}
 
 <meta name="csrf-token" content="{{ csrf_token() }}">

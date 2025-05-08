@@ -2,9 +2,9 @@
 <div class="sidebar" data-background-color="dark">
     <div class="sidebar-logo">
         <div class="logo-header" data-background-color="dark">
-            <a href="/admin" class="logo">
-                <img src="/template/admin/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand"
-                    height="20" />
+            <a href="{{ route('admin') }}" class="logo">
+                <img src="{{ asset('template/admin/img/kaiadmin/logo_light.svg') }}" alt="navbar brand"
+                    class="navbar-brand" height="20" />
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -54,13 +54,13 @@
                     <div class="collapse" id="user">
                         <ul class="nav nav-collapse">
                             <li class="nav_item">
-                                <a href="/admin/users/add">
+                                <a href="{{ route('users.create') }}">
                                     <i class="fas fa-user-plus ms-4"></i>
                                     <span>Thêm Tài Khoản</span>
                                 </a>
                             </li>
                             <li class="nav_item">
-                                <a href="/admin/users/list">
+                                <a href="{{ route('users.list') }}">
                                     <i class="fas fa-list-alt ms-4"></i>
                                     <span>Danh Sách Tài Khoản</span>
                                 </a>
@@ -77,27 +77,28 @@
                     <div class="collapse" id="image">
                         <ul class="nav nav-collapse">
                             <li class="nav_item">
-                                <a href="/admin/hinhanh/list">
+                                <a href="{{ route('hinhanh.list') }}">
                                     <i class="fas fa-list-alt ms-4"></i>
                                     <span>Danh Sách Ảnh</span>
                                 </a>
+
                             </li>
                             <li class="nav_item">
-                                <a href="/admin/hinhanh/add">
+                                <a href="{{ route('hinhanh.add') }}">
                                     <i class="far fa-file-image ms-4"></i>
                                     <span>Thêm Ảnh</span>
                                 </a>
                             </li>
                             @if (Auth::check() && Auth::user()->role_id == 0)
                                 <li class="nav_item">
-                                    <a href="/admin/danhmucanh/list">
+                                    <a href="{{ route('menus.list') }}">
                                         <i class="fas fa-layer-group ms-4"></i>
                                         <span>Danh Mục Ảnh</span>
                                     </a>
                                 </li>
 
                                 <li class="nav_item">
-                                    <a href="/admin/danhmuccon_anh/list">
+                                    <a href="{{ route('danhmuccon.index') }}">
                                         <i class="fas fa-layer-group ms-4"></i>
                                         <span>Danh Mục Con</span>
                                     </a>
@@ -116,20 +117,20 @@
                     <div class="collapse" id="blog">
                         <ul class="nav nav-collapse">
                             <li class="nav_item">
-                                <a href="/admin/tintuc/add">
+                                <a href="{{ route('tintuc.add') }}">
                                     <i class="fas fa-pen-nib ms-4"></i>
                                     <span>Thêm Tin</span>
                                 </a>
                             </li>
                             <li class="nav_item">
-                                <a href="/admin/tintuc/list">
+                                <a href="{{ route('tintuc.list') }}">
                                     <i class="fas fa-list-alt ms-4"></i>
                                     <span>Danh Sách Tin</span>
                                 </a>
                             </li>
                             @if (Auth::check() && Auth::user()->role_id == 0)
                                 <li class="nav_item">
-                                    <a href="/admin/danhmuctin/list">
+                                    <a href="{{ route('danhmuctin.list') }}">
                                         <i class="fas fa-layer-group ms-4"></i>
                                         <span>Danh Mục Tin</span>
                                     </a>
@@ -160,7 +161,7 @@
                     <div class="collapse" id="report">
                         <ul class="nav nav-collapse">
                             <li class="nav_item">
-                                <a href="/admin/baocao/list">
+                                <a href="{{ route('baocao.list') }}">
                                     <i class="fas fa-list-alt ms-4"></i>
                                     <span>List Report</span>
                                 </a>

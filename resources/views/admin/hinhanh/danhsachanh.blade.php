@@ -23,12 +23,12 @@
                     {{-- Nút kích hoạt / vô hiệu hóa hình ảnh --}}
                     @if ($img->active == 1)
                         <a href="javascript:void(0);" class="btn btn-sm btn-success"
-                            onclick="toggleActive({{ $img->id }}, '/admin/hinhanh/disable')">
+                            onclick="toggleActive({{ $img->id }}, '{{ route('hinhanh.disable') }}')">
                             <i class="fas fa-eye"></i> Hoạt động
                         </a>
                     @else
                         <a href="javascript:void(0);" class="btn btn-sm btn-warning"
-                            onclick="toggleActive({{ $img->id }}, '/admin/hinhanh/enable')">
+                            onclick="toggleActive({{ $img->id }}, '{{ route('hinhanh.enable') }}')">
                             <i class="fas fa-eye-slash"></i> Bị khóa
                         </a>
                     @endif
@@ -46,12 +46,12 @@
                 </td>
                 <td style="text-align: center">
                     {{-- Nút cập nhật hình ảnh --}}
-                    <a class="btn btn-sm btn-warning me-1" href="/admin/hinhanh/edit/{{ $img->id }}">
+                    <a class="btn btn-sm btn-warning me-1" href="{{ route('hinhanh.edit', ['hinhanh' => $img->id]) }}">
                         <i class="fas fa-edit"></i>
                     </a>
                     {{-- Nút xóa hình ảnh --}}
                     <a href="#" class="btn btn-sm btn-danger"
-                        onclick="delete_hinhanh({{ $img->id }}, '/admin/hinhanh/destroy')">
+                        onclick="delete_hinhanh({{ $img->id }}, '{{ route('hinhanh.destroy') }}')">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>
@@ -98,5 +98,5 @@
             });
         });
     </script>
-    <script src="{{ asset('/template/js/ajax/danhsach_anh.js') }}"></script>
+    <script src="{{ asset('template/js/ajax/danhsach_anh.js') }}"></script>
 @endsection
