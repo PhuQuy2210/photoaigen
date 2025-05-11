@@ -3,7 +3,7 @@
 
 <head>
     @include('admin.head')
-    <meta name="route-danhsach-anh" content="{{ route('hinhanh.index') }}">
+    {{-- <meta name="route-danhsach-anh" content="{{ route('hinhanh.index') }}"> --}}
     <style>
         i {
             color: white !important;
