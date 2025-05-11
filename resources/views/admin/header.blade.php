@@ -267,14 +267,14 @@
                                     <div class="u-text">
                                         <h4>{{ Auth::user()->name }}</h4>
                                         <p class="">{{ Auth::user()->email }}</p>
-                                        <a href="{{ route('account.info') }}"
+                                        <a href="{{ route('info') }}"
                                             class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('account.info') }}">Account Setting</a>
+                                <a class="dropdown-item" href="{{ route('info') }}">Account Setting</a>
                                 <a class="dropdown-item" href="{{ route('users.logout') }}">Logout</a>
                             </li>
                         </div>
