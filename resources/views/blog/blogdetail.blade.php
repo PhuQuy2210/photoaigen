@@ -112,7 +112,7 @@
                             <!-- Thể loại -->
                             <div class="tags flex space-x-2 flex-wrap mb-0">
                                 @foreach ($danhmucs as $dm)
-                                    <a href="{{ route('danhmuc.category', ['id' => $dm->id]) }}"
+                                    <a href="{{ route('blog.category', ['id' => $dm->id]) }}"
                                         class="bg-gray-200 text-gray-700 px-3 py-1 rounded hover:bg-gray-300 mb-0 inline-block mb-2">
                                         {{ $dm->translated_name }}
                                     </a>
