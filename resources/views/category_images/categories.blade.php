@@ -17,7 +17,7 @@
         @foreach ($danhmuccons as $danhmuc)
             <div class="category_child btn-group mt-3 pl-2" role="group">
                 <a href="{{ route('images.categoriesChild', ['id' => $danhmuc->id]) }}"
-                    class="btn btn-custom">{{ $danhmuc->translated_name }}</a>
+                    class="btn-categogy-child btn btn-custom neon-button">{{ $danhmuc->translated_name }}</a>
             </div>
         @endforeach
     </div>

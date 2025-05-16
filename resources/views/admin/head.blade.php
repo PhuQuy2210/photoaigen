@@ -1,7 +1,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>admin</title>
 <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-<link rel="icon" href="{{ asset('template/admin/img/kaiadmin/favicon.ico') }}" type="image/x-icon" />
+{{-- <link rel="icon" href="{{ asset('template/admin/img/kaiadmin/favicon.ico') }}" type="image/x-icon" /> --}}
+<link rel="icon" type="image/png" href="{{ asset('upload/logo/web.png') }}">
+{{-- <title>{{ $title }}</title> --}}
 
 <!-- Fonts and icons -->
 <script src="{{ asset('template/admin/js/plugin/webfont/webfont.min.js') }}"></script>

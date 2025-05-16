@@ -2,14 +2,14 @@
 <header class="header-section">
     <div class="container-fluid">
         <div class="row align-items-center background-header color-header">
-            <div class="col-3 header-padding">
+            <div class="col-2 header-padding">
                 <div class="logo">
                     <a href="{{ route('home') }}">
-                        <img src="{{ asset('template/img/logo.png') }}" alt="LOGO">
+                        <img src="{{ asset('upload/logo/web.png') }}" alt="LOGO">
                     </a>
                 </div>
             </div>
-            <div class="col-5 d-flex justify-content-start header-padding">
+            <div class="col-6 d-flex justify-content-start header-padding">
                 <div class="show-from-600">
                     <nav class="nav-menu mobile-menu">
                         <ul class="d-flex flex-lg-row justify-content-center">

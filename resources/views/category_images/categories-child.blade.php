@@ -14,13 +14,13 @@
 
         @include('category_images.list_category')
 
-        <h2 class="pb-2 pl-2 fw-bold text-uppercase bg-h2">
+        <h2 class="pb-2 pl-2 fw-bold text-uppercase bg-h2 categogy-explore">
             {{ __('messages.explore_more') }}
         </h2>
         @foreach ($danhmuccons as $danhmuc)
             <div class="category_child btn-group mt-3 pl-2" role="group">
                 <a href="{{ route('images.categoriesChild', ['id' => $danhmuc->id]) }}"
-                    class="btn btn-custom">{{ $danhmuc->translated_name }}</a>
+                    class="btn btn-custom neon-button btn-categogy-child">{{ $danhmuc->translated_name }}</a>
             </div>
         @endforeach
     </div>

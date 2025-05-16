@@ -4211,6 +4211,10 @@ figure {
     letter-spacing: 1px;
 }
 
+.btn-categogy-child {
+    border-radius: 50px !important;
+}
+
 /* .neon-button::after {
     content: "➜";
     margin-left: 10px;
@@ -4251,5 +4255,14 @@ figure {
 
 /* Ghi đè màu trắng cho trái tim khi được like */
 .bi-heart-fill.text-danger {
-    color: #dc3545 !important; /* Màu đỏ của text-danger trong Tailwind */
+    color: #dc3545 !important;
+    /* Màu đỏ của text-danger trong Tailwind */
+}
+
+.logo {
+    padding: 0px !important;
+}
+
+.logo a img {
+    max-width: 100px !important;
 }

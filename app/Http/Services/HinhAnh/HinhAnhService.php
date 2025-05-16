@@ -222,6 +222,7 @@ class HinhAnhService
             ->withCount(['images' => function ($query) {
                 $query->where('active', 1); // Đếm ảnh có trạng thái 'active'
             }])
+            // ->orderBy('created_at')
             ->get()
             ->map(function ($danhmuc) {
                 $locale = app()->getLocale();
