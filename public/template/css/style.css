@@ -3560,13 +3560,6 @@ ol {
     /* Hiệu ứng mượt */
 }
 
-.report-icon-user {
-    bottom: 0px;
-    right: 2%;
-    text-align: center;
-    width: 30px;
-}
-
 /* Khi hover vào pf-item, các icon sẽ xuất hiện từ trên xuống */
 .pf-item:hover .download-icon,
 .pf-item:hover .like-icon,

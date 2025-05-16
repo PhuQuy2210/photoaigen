@@ -26,7 +26,7 @@
                     </a>
                 </div>
             @else
-                <div class="report-icon-user position-absolute top-0 start-0" title="{{ __('messages.report_violation') }}">
+                <div class="report-icon position-absolute top-0 start-0" title="{{ __('messages.report_violation') }}" style="bottom: 0px !important;">
                     <a href="javascript:void(0);"
                         onclick="handleCheckLogin('{{ Auth::check() }}', '{{ $image->id }}')">
                         <i class="bi bi-chat-left-text"></i>
