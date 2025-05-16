@@ -1,7 +1,7 @@
 @foreach ($lists as $image)
     <div class="item_image {{ Str::slug($image->category->name) }} {{ $image->direction == '0' ? 'ngang' : 'doc' }}"
         data-id="{{ $image->id }}">
-        <img class="if" src="{{ asset($image->full_thumb ) }}" alt="{{ __('messages.image_alt') }}">
+        <img class="if" src="{{ asset($image->full_thumb) }}" alt="{{ __('messages.image_alt') }}">
         <div class="box-icon">
             <div class="download-icon position-absolute top-0 start-0" title="{{ __('messages.download_image') }}">
                 <a href="{{ route('download.image', ['url' => $image->full_url]) }}">
@@ -18,12 +18,21 @@
                 <i class="bi {{ $image->userHasLiked ? 'bi-heart-fill text-danger' : 'bi-heart' }}"></i>
                 <span>{{ number_format($image->like_count, 0, ',', '.') }}</span>
             </div>
-            <div class="report-icon position-absolute top-0 start-0" title="{{ __('messages.report_violation') }}">
-                <a href="javascript:void(0);"
-                    onclick="handleCheckLogin('{{ Auth::check() }}', '{{ $image->id }}')">
-                    <i class="bi bi-chat-left-text"></i>
-                </a>
-            </div>
+            @if (Auth::check() && Auth::user()->role_id == 0)
+                <div class="report-icon position-absolute top-0 start-0" title="{{ __('messages.report_violation') }}">
+                    <a href="javascript:void(0);"
+                        onclick="handleCheckLogin('{{ Auth::check() }}', '{{ $image->id }}')">
+                        <i class="bi bi-chat-left-text"></i>
+                    </a>
+                </div>
+            @else
+                <div class="report-icon-user position-absolute top-0 start-0" title="{{ __('messages.report_violation') }}">
+                    <a href="javascript:void(0);"
+                        onclick="handleCheckLogin('{{ Auth::check() }}', '{{ $image->id }}')">
+                        <i class="bi bi-chat-left-text"></i>
+                    </a>
+                </div>
+            @endif
         </div>
         <a href="{{ asset($image->full_url) }}" class="pf-icon position-absolute image-popup"
             title="{{ __('messages.expand_image') }}">
