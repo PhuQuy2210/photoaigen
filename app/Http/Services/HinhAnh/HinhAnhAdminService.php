@@ -29,14 +29,28 @@ class HinhAnhAdminService
     }
 
     // Lấy tất cả danh mục con có trạng thái 'active' và danh mục cha cũng phải 'active'
+    // public function getDanhMucCon()
+    // {
+    //     return CatagoryImgChild::active()
+    //         ->whereHas('parent', function ($query) {
+    //             $query->active();
+    //         })
+    //         ->orderBy('name', 'asc') // Sắp xếp theo tên tăng dần
+    //         ->get();
+    // }
+    
     public function getDanhMucCon()
     {
         return CatagoryImgChild::active()
             ->whereHas('parent', function ($query) {
                 $query->active();
             })
-            ->orderBy('name', 'asc') // Sắp xếp theo tên tăng dần
-            ->get();
+            ->select('*') // lấy tất cả trường
+            ->selectRaw('LOWER(name) as lower_name') // tạo trường tạm lower_name
+            ->orderBy('name', 'asc')
+            ->get()
+            ->unique('lower_name') // lọc trùng dựa theo lower_name
+            ->values(); // reset lại key cho đẹp
     }
 
     public function insert($request)
@@ -83,7 +97,7 @@ class HinhAnhAdminService
             return false;
         }
     }
-    
+
     public function enable($request)
     {
         $result = HinhAnh::where('id', $request->input('id'))->first();

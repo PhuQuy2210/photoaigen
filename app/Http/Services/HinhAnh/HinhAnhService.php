@@ -222,7 +222,8 @@ class HinhAnhService
             ->withCount(['images' => function ($query) {
                 $query->where('active', 1); // Đếm ảnh có trạng thái 'active'
             }])
-            // ->orderBy('created_at')
+            ->orderByDesc('images_count') // Sắp xếp giảm dần theo số lượng ảnh
+            // ->limit(10) // Giới hạn 10 danh mục
             ->get()
             ->map(function ($danhmuc) {
                 $locale = app()->getLocale();
