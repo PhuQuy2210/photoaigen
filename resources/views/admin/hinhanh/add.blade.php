@@ -12,7 +12,7 @@
                     <div class="form-group">
                         <label for="description">Mô Tả Thể Loại:</label>
                         <div id="subcategory-buttons" class="mb-2">
-                            @foreach ($catagory_img_childs as $danhmuccon)
+                            @foreach ($catagory_img_childs_description as $danhmuccon)
                                 <button type="button" class="btn btn-sm btn-outline-primary text-dark mb-1"
                                     onclick="addToDescription('{{ $danhmuccon->name }}')">
                                     {{ $danhmuccon->name }}

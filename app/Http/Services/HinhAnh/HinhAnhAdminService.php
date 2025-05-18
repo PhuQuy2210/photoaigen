@@ -29,17 +29,17 @@ class HinhAnhAdminService
     }
 
     // Lấy tất cả danh mục con có trạng thái 'active' và danh mục cha cũng phải 'active'
-    // public function getDanhMucCon()
-    // {
-    //     return CatagoryImgChild::active()
-    //         ->whereHas('parent', function ($query) {
-    //             $query->active();
-    //         })
-    //         ->orderBy('name', 'asc') // Sắp xếp theo tên tăng dần
-    //         ->get();
-    // }
-    
     public function getDanhMucCon()
+    {
+        return CatagoryImgChild::active()
+            ->whereHas('parent', function ($query) {
+                $query->active();
+            })
+            ->orderBy('name', 'asc') // Sắp xếp theo tên tăng dần
+            ->get();
+    }
+    
+    public function getDanhMucMoTa()
     {
         return CatagoryImgChild::active()
             ->whereHas('parent', function ($query) {
