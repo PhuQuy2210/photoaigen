@@ -67,7 +67,7 @@ class HinhAnhController extends Controller
             'title' => 'Thêm hình ảnh mới',
             'danhmucanh' => DanhMucAnh::active()->get(),  // Lấy danh mục cha đang hoạt động
             'catagory_img_childs_description' => $this->hinhanhAdminService->getDanhMucMoTa(),
-            'catagory_img_childs' => $this->hinhanhAdminService->getDanhMucMoTa(),
+            'catagory_img_childs' => $this->hinhanhAdminService->getDanhMucCon(),
             
         ]);
     }
