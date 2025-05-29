@@ -17,7 +17,7 @@
                     @foreach ($danhmuc_cha as $dm)
                         @if ($dm->active == 1)
                             <option value="{{ $dm->id }}" {{ $dm->danhmuc_id == $danhmuc->id ? 'selected' : '' }}>
-                                {{ $dm->name }}
+                                {{ $danhmuc->parent->name }}
                             </option>
                         @endif
                     @endforeach

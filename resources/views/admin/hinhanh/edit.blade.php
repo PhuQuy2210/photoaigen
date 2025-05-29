@@ -117,7 +117,7 @@
                         <label for="menu">Hình ảnh: </label>
                         <input type="file" class="form-control" id="upload" name="url">
                         <div class="mt-2">
-                            <img src="{{ asset($hinhanh->url) }}" alt="Hình ảnh hiện tại" class="img-thumbnail"
+                            <img src="{{ asset($hinhanh->full_url) }}" alt="Hình ảnh hiện tại" class="img-thumbnail"
                                 style="max-width: 200px;">
                         </div>
                     </div>

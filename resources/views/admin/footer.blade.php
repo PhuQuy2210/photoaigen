@@ -11,9 +11,8 @@
 </div>
 
 <!-- Main admin JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 <script src="{{ asset('template/admin/js/main.js') }}"></script>
-{{-- <script src="{{ asset('template/js/design.js') }}"></script> --}}
 
 <!-- Core JS Files -->
 <script src="{{ asset('template/admin/js/core/jquery-3.7.1.min.js') }}"></script>
@@ -51,5 +50,5 @@
 <script src="{{ asset('template/admin/js/kaiadmin.min.js') }}"></script>
 
 <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-<script src="{{ asset('template/admin/js/setting-demo.js') }}"></script>
-<script src="{{ asset('template/admin/js/demo.js') }}"></script>
+{{-- <script src="{{ asset('template/admin/js/setting-demo.js') }}"></script>
+<script src="{{ asset('template/admin/js/demo.js') }}"></script> --}}

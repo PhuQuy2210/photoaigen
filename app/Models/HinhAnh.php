@@ -23,6 +23,7 @@ class HinhAnh extends Model
         'active',
         'direction',
         'view',
+        'view_real',
         'like_count',
         'category_id',
         'category_child',

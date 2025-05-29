@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('active')->default(1)->comment('Kích hoạt');
             $table->integer('direction')->default(1)->comment('0-ngang or 1-dọc');
             $table->integer('view')->nullable()->comment('Lượt xem');
+            $table->integer('view_real')->nullable()->comment('Lượt xem thực');
             $table->integer('like_count')->default(1500)->comment('Số lượt thích của hình ảnh');
             $table->unsignedBigInteger('category_id')->nullable()->comment('Danh mục ảnh');
             $table->unsignedBigInteger('category_child')->default(1)->comment('Danh mục con');

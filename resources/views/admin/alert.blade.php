@@ -9,7 +9,7 @@
     </div>
 @endif --}}
 {{-- Bắt lỗi ->with và lỗi Session::flash --}}
-{{-- @if (Session::has('error'))
+@if (Session::has('error'))
     <div class="alert alert-danger">
         {{ Session::get('error') }}
     </div>
@@ -20,9 +20,9 @@
     <div class="alert alert-success">
         {{ Session::get('success') }}
     </div>
-@endif --}}
+@endif
 
-
+{{-- 
 @if (Session::has('success') || Session::has('error'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -47,4 +47,4 @@
             @endif
         });
     </script>
-@endif
+@endif --}}

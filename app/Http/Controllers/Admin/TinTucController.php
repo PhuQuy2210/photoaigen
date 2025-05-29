@@ -31,8 +31,6 @@ class TinTucController extends Controller
     // Phương thức lấy danh sách danh mục và người dùng
     public function create()
     {
-        \Log::info('thực hiện thêm tin mục create    controller');
-
         return view('admin.tintuc.add', [
             'title' => 'Thêm Bản Tin Mới',
             'danhmuctin' => $this->blogservice->getAll_active(),  // Lấy danh mục cha đang hoạt động
@@ -43,6 +41,15 @@ class TinTucController extends Controller
     //Xử lý thêm tin tức
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string|max:1000',
+            'content' => 'required|string',
+            'author_id' => 'required|integer|exists:users,id',
+            'category_id' => 'required|integer|exists:categories,id',
+            'url.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:20048',
+        ]);
+
         $result = $this->blogservice->insert($request);
         if ($result) {
             return redirect('admin/tintuc/list');
@@ -112,4 +119,3 @@ class TinTucController extends Controller
         return response()->json(['error' => true]);
     }
 }
-

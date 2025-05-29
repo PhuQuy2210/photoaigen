@@ -68,13 +68,21 @@ class HinhAnhController extends Controller
             'danhmucanh' => DanhMucAnh::active()->get(),  // Lấy danh mục cha đang hoạt động
             'catagory_img_childs_description' => $this->hinhanhAdminService->getDanhMucMoTa(),
             'catagory_img_childs' => $this->hinhanhAdminService->getDanhMucCon(),
-            
+
         ]);
     }
 
     //Xử lý thêm ảnh
     public function store(Request $request)
     {
+        $request->validate([
+            'url.*' => 'required|image|mimes:jpg,jpeg,png,webp|max:20048',
+            'description' => 'nullable|string|max:1000',
+            'direction' => 'nullable|string|max:255',
+            'category_id' => 'required|integer|exists:categories,id',
+            'category_child' => 'nullable|integer|exists:category_children,id',
+        ]);
+        
         $result = $this->hinhanhAdminService->insert($request);
         if ($result) {
             return redirect('admin/hinhanh/list');
@@ -149,10 +157,15 @@ class HinhAnhController extends Controller
     // Tăng lượt xem
     public function updateView($id)
     {
-        $hinhAnh = HinhAnh::findOrFail($id);
-        $hinhAnh->increment('view', 5); // Tăng view lên 5
+        HinhAnh::where('id', $id)->update([
+            'view' => \DB::raw('view + 101'),
+            'view_real' => \DB::raw('view_real + 1'),
+        ]);
+
+        $hinhAnh = HinhAnh::findOrFail($id); // Lấy lại giá trị cập nhật
         return response()->json(['success' => true, 'view' => $hinhAnh->view]);
     }
+
 
     // tăng lượt like 
     public function likeImage(Request $request)

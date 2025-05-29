@@ -18,10 +18,13 @@ class HinhAnhService
     //Lấy danh sách ảnh
     public function getAll()
     {
-        return HinhAnh::with('category')
-            ->where('active', 1)
-            ->orderBy('created_at', 'desc')
-            ->paginate(50);
+        return HinhAnh::with('category', 'category_child')
+            ->join('catagory_img_child', 'hinhanh.category_child', '=', 'catagory_img_child.id')
+            ->where('hinhanh.active', 1)
+            ->where('catagory_img_child.name', '!=', '16+')
+            ->orderBy('hinhanh.created_at', 'desc')
+            ->select('hinhanh.*') // chỉ lấy dữ liệu từ bảng hinhanh
+            ->paginate(40);
     }
 
     //Lấy ảnh theo ID
@@ -37,64 +40,74 @@ class HinhAnhService
     //Lấy danh sách ảnh phổ biến
     public function getImg_popular()
     {
-        return HinhAnh::with('category')
+        return HinhAnh::with('category', 'category_child')
             ->where('active', 1)
+            ->whereHas('category_child', fn($q) => $q->where('name', '!=', '16+'))
             ->orderBy('like_count', 'desc')
-            ->paginate(20);
+            ->paginate(40);
     }
+
 
     //Lấy danh sách ảnh theo lượt xem
     public function getImg_viewCount()
     {
-        return HinhAnh::with('category')
+        return HinhAnh::with('category', 'category_child')
             ->where('active', 1)
-            ->orderBy('view', 'desc')
-            ->paginate(20);
+            ->whereHas('category_child', fn($q) => $q->where('name', '!=', '16+'))
+            ->orderBy('view_real', 'desc')
+            ->paginate(40);
     }
 
-    //Lấy 20 ảnh random
+
+    //Lấy 40 ảnh random
     public function getImg_random()
     {
-        return HinhAnh::with('category')
-            ->inRandomOrder() // Lấy các bản ghi theo thứ tự ngẫu nhiên
+        return HinhAnh::with('category', 'category_child')
+            ->inRandomOrder()
             ->where('active', 1)
-            ->paginate(20);
+            ->whereHas('category_child', fn($q) => $q->where('name', '!=', '16+'))
+            ->paginate(40);
     }
 
-    // Lấy 20 ảnh có thuộc tính direction = 1 (dọc)
+
+    // Lấy 40 ảnh có thuộc tính direction = 1 (dọc)
     public function getImg_verticalImage()
     {
-        return HinhAnh::with('category')
-            ->where('direction', 1) // Lọc ảnh có direction = 1
+        return HinhAnh::with('category', 'category_child')
+            ->where('direction', 1)
             ->where('active', 1)
-            ->paginate(20);
+            ->whereHas('category_child', fn($q) => $q->where('name', '!=', '16+'))
+            ->paginate(40);
     }
 
-    // Lấy 20 ảnh có thuộc tính direction = 0 (ngang)
+
+    // Lấy 40 ảnh có thuộc tính direction = 0 (ngang)
     public function getImg_horizontalImage()
     {
-        return HinhAnh::with('category')
-            ->where('direction', 0) // Lọc ảnh có direction = 0
+        return HinhAnh::with('category', 'category_child')
+            ->where('direction', 0)
             ->where('active', 1)
-            ->paginate(20);
+            ->whereHas('category_child', fn($q) => $q->where('name', '!=', '16+'))
+            ->paginate(40);
     }
 
-    // Lấy 20 ảnh theo danh mục
+
+    // Lấy 40 ảnh theo danh mục
     public function getImg_category($id)
     {
         return HinhAnh::with('category')
             ->where('category_id', $id)
             ->where('active', 1)
-            ->paginate(20);
+            ->paginate(40);
     }
 
-    // Lấy 20 ảnh theo danh mục con
+    // Lấy 40 ảnh theo danh mục con
     public function getImg_category_child($id)
     {
         return HinhAnh::with('category_child')
             ->where('category_child', $id)
             ->where('active', 1)
-            ->paginate(20);
+            ->paginate(40);
     }
 
     // Lấy danh sách danh mục con
@@ -147,14 +160,14 @@ class HinhAnhService
             });
     }
 
-    // Lấy 20 ảnh mà người dùng đã thích
+    // Lấy 40 ảnh mà người dùng đã thích
     public function get_userlike($id)
     {
         return HinhAnh::join('user_likes', 'hinhanh.id', '=', 'user_likes.hinhanh_id')
             ->where('user_likes.user_id', $id)  // Lọc ảnh theo user_id
             ->select('hinhanh.*') // Lấy tất cả cột của bảng hinhanh
             ->orderByDesc('liked_at')
-            ->paginate(20);  // Lấy 20 ảnh đầu tiên
+            ->paginate(40);  // Lấy 40 ảnh đầu tiên
     }
 
     // Lấy danh mục cha theo id

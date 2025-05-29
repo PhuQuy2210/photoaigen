@@ -38,7 +38,7 @@ class HinhAnhAdminService
             ->orderBy('name', 'asc') // Sắp xếp theo tên tăng dần
             ->get();
     }
-    
+
     public function getDanhMucMoTa()
     {
         return CatagoryImgChild::active()
@@ -81,8 +81,9 @@ class HinhAnhAdminService
                     $data['url'] = $imagePath;
                     $data['thumb_path'] = $thumbPath;
                     $data['active'] = 1;
-                    $data['view'] = 1;
-                    $data['like_count'] = rand(10, 500);
+                    $data['view'] = rand(1000, 9500);
+                    $data['view_real'] = 1;
+                    $data['like_count'] = rand(10, 100);
 
                     HinhAnh::create($data);
                 }
@@ -122,14 +123,25 @@ class HinhAnhAdminService
 
     public function delete($request)
     {
+        $id = $request->input('id');
+
         // Xóa các bản ghi liên quan trong bảng user_likes
-        UserLike::where('hinhanh_id', $request->input('idimg'))->delete();
+        UserLike::where('hinhanh_id', $id)->delete();
 
+        // Tìm hình ảnh cần xóa
+        $hinhanh = HinhAnh::find($id);
 
-        $result = HinhAnh::where('id', $request->input('id'))->first();
+        if ($hinhanh) {
+            // Lấy đường dẫn ảnh từ cột 'url' và 'thumb_path'
+            $imagePath = $hinhanh->url;             // ví dụ: images/abc.jpg
+            $thumbnailPath = $hinhanh->thumb_path;  // ví dụ: thumbnails/abc.jpg
 
-        if ($result) {
-            $result->delete();
+            // Xóa file khỏi Amazon S3
+            Storage::disk('s3')->delete([$imagePath, $thumbnailPath]);
+
+            // Xóa bản ghi trong cơ sở dữ liệu
+            $hinhanh->delete();
+
             return true;
         }
         return false;

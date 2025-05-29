@@ -20,5 +20,5 @@
 <link rel="stylesheet" href="{{ asset('template/admin/css/kaiadmin.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('template/css/style.css') }}" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link rel="stylesheet" href="{{ asset('template/admin/css/demo.css') }}" />
+{{-- <link rel="stylesheet" href="{{ asset('template/admin/css/demo.css') }}" /> --}}
 <meta name="csrf-token" content="{{ csrf_token() }}">

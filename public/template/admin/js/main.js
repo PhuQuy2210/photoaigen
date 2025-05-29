@@ -271,35 +271,6 @@ function delete_report_img(idimg, url) {
     }
 }
 
-// function delete_report_img_list(idimg, url) {
-//     if (confirm('Bạn có chắc muốn xóa ảnh này?')) {
-//         $.ajax({
-//             type: 'DELETE', // Phương thức DELETE
-//             datatype: 'JSON',
-//             data: {
-//                 idimg: idimg,
-//                 _token: $('meta[name="csrf-token"]').attr('content')  // Thêm CSRF token vào đây
-//             },
-//             url: url,
-//             success: function (result) {
-//                 if (result.error === false) {
-//                     alert(result.message);
-//                     // Điều hướng về trang /admin/baocao/list sau khi xóa thành công
-//                     window.location.href = '/admin/baocao/list';
-//                 } else {
-//                     alert('Xóa ảnh thất bại!');
-//                 }
-//             },
-//             error: function () {
-//                 alert('Có lỗi xảy ra, vui lòng thử lại.');
-//             }
-//         });
-//     }
-// }
-
-
-
-// Xóa bản tin
 function delete_tintuc(id, url) {
     if (confirm('Bạn có chắc muốn xóa tin này?')) {
         $.ajax({

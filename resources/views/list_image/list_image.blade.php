@@ -9,10 +9,29 @@
                     <span>{{ __('messages.download_image') }}</span>
                 </a>
             </div>
-            <div class="view-icon position-absolute start-0" title="{{ __('messages.view_count') }}">
-                <i class="bi bi-eye"></i>
-                <span>{{ number_format($image->view, 0, ',', '.') }}</span>
-            </div>
+            @if (Auth::check() && Auth::user()->role_id == 0)
+                <div class="view-icon position-absolute start-0" title="{{ __('messages.view_count') }}">
+                    <i class="bi bi-eye"></i>
+                    <span>{{ number_format($image->view_real, 0, ',', '.') }}</span>
+                </div>
+            @else
+                @php
+                    if (!function_exists('formatViews')) {
+                        function formatViews($views)
+                        {
+                            if ($views >= 1000) {
+                                return rtrim(number_format($views / 1000, 1), '.0') . 'k';
+                            }
+                            return number_format($views, 0, ',', '.');
+                        }
+                    }
+                @endphp
+
+                <div class="view-icon position-absolute start-0" title="{{ __('messages.view_count') }}">
+                    <i class="bi bi-eye"></i>
+                    <span>{{ formatViews($image->view) }}</span>
+                </div>
+            @endif
             <div class="like-icon position-absolute top-0 end-0" title="{{ __('messages.like_image') }}"
                 onclick="handleLike({{ $image->id }}, this)">
                 <i class="bi {{ $image->userHasLiked ? 'bi-heart-fill text-danger' : 'bi-heart' }}"></i>
@@ -26,7 +45,8 @@
                     </a>
                 </div>
             @else
-                <div class="report-icon position-absolute top-0 start-0" title="{{ __('messages.report_violation') }}" style="bottom: 0px !important;">
+                <div class="report-icon position-absolute top-0 start-0" title="{{ __('messages.report_violation') }}"
+                    style="bottom: 0px !important;">
                     <a href="javascript:void(0);"
                         onclick="handleCheckLogin('{{ Auth::check() }}', '{{ $image->id }}')">
                         <i class="bi bi-chat-left-text"></i>
@@ -56,3 +76,11 @@
         cancel: @json(__('messages.cancel')),
     };
 </script>
+{{-- <script>
+    function formatViews(views) {
+        if (views >= 1000) {
+            return (views / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+        }
+        return views.toLocaleString('de-DE');
+    }
+</script> --}}

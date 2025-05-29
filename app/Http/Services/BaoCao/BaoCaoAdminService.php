@@ -10,6 +10,7 @@ use App\Models\DanhMucAnh;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 
 class BaoCaoAdminService
 {
@@ -53,26 +54,25 @@ class BaoCaoAdminService
         return false;
     }
 
-    // xử lý xóa ảnh
     public function delete_img($request)
     {
         try {
-            // Xóa các bản ghi liên quan trong bảng user_likes
-            UserLike::where('hinhanh_id', $request->input('idimg'))->delete();
+            $id = $request->input('idimg');
 
-            // Xóa các báo cáo liên quan đến hình ảnh
-            BaoCao::where('hinhanh_id', $request->input('idimg'))->delete();
+            // Xóa các bản ghi liên quan
+            UserLike::where('hinhanh_id', $id)->delete();
+            BaoCao::where('hinhanh_id', $id)->delete();
 
             // Xóa hình ảnh
-            $image = HinhAnh::find($request->input('idimg'));
-            if ($image) {
-                $image->delete();
-                return true;
-            }
+            $image = HinhAnh::find($id);
+            if (!$image) return false;
 
-            return false;
+            Storage::disk('s3')->delete([$image->url, $image->thumb_path]);
+            $image->delete();
+
+            return true;
         } catch (Exception $e) {
-            \Log::error('Lỗi khi xóa hình ảnh:', ['error' => $e->getMessage()]);
+            \Log::error('Lỗi khi xóa hình ảnh báo cáo', ['message' => $e->getMessage()]);
             return false;
         }
     }
@@ -81,5 +81,4 @@ class BaoCaoAdminService
     {
         return User::findOrFail('id', $userID);
     }
-
 }

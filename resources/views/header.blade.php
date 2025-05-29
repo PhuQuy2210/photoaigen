@@ -141,10 +141,10 @@
                                 {{ __('messages.orientation') }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item {{ request()->is('images-random') ? 'active' : '' }}"
+                                {{-- <a class="dropdown-item {{ request()->is('images-random') ? 'active' : '' }}"
                                     href="{{ route('images.random') }}" data-sort="random" data-filter="">
                                     {{ __('messages.any') }}
-                                </a>
+                                </a> --}}
                                 <a class="dropdown-item {{ request()->is('images-vertical') ? 'active' : '' }}"
                                     href="{{ route('images.vertical') }}" data-sort="direction" data-filter="0">
                                     {{ __('messages.vertical') }}
