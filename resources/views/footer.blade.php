@@ -9,8 +9,7 @@
                         <img src="{{ asset('template/img/f-logo.png') }}" alt="">
                     </a>
                 </div>
-                <p>{{ __('messages.explore') }}
-                </p>
+                <p>{{ __('messages.explore') }}</p>
                 <div class="fa-social">
                     <a href="https://www.facebook.com/profile.php?id=100095548688065"><i class="fa fa-facebook"></i></a>
                     <a href="https://www.facebook.com/profile.php?id=100095548688065"><i class="fa fa-twitter"></i></a>
