@@ -122,32 +122,6 @@ function handleCheckLogin(isLoggedIn, imageId) {
 }
 
 
-// kiểm tra đăng nhập để báo cáo   
-// function handleCheckLogin(isLoggedIn, imageId) {
-//     if (isLoggedIn === "1") {
-//         // Nếu người dùng đã đăng nhập
-//         window.location.href = `/baocao/${imageId}`;
-//     } else {
-//         // Nếu người dùng chưa đăng nhập
-//         Swal.fire({
-//             title: 'Chưa đăng nhập!',
-//             html: `
-//                 <p>Để sử dụng tính năng này, bạn cần đăng nhập. Vui lòng sử dụng Google để tiếp tục.</p>
-//                 <a href="/auth/google"
-//                     class="btn btn-primary btn-lg btn-block rounded-pill shadow-sm d-flex align-items-center justify-content-center mt-3">
-//                     <img src="/upload/logo/gg.png" alt="Google logo" width="20" height="20" class="me-2">
-//                     Đăng nhập với Google
-//                 </a>
-//             `,
-//             icon: 'warning',
-//             showCancelButton: true,
-//             showConfirmButton: false, // Ẩn nút xác nhận mặc định
-//             cancelButtonText: 'Hủy',
-//             reverseButtons: true,
-//         });
-//     }
-// }
-
 function handleLike(imageId, likeElement) {
     fetch(`/like-image`, {
         method: 'POST',
@@ -307,67 +281,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     images.forEach(image => observer.observe(image));
 });
-
-// giao diện
-// document.addEventListener("DOMContentLoaded", function () {
-//     // Kiểm tra nếu có theme đã lưu
-//     let savedTheme = localStorage.getItem("theme");
-//     if (!savedTheme) {
-//         savedTheme = "light"; // Mặc định là light
-//     }
-//     setTheme(savedTheme);
-
-//     // Hàm đổi giao diện và lưu vào localStorage
-//     window.setTheme = function (theme) {
-//         document.documentElement.setAttribute("data-theme", theme);
-//         localStorage.setItem("theme", theme);
-
-//         // Đổi icon trên button
-//         const icon = document.querySelector("#darkmode i");
-//         if (theme === "dark") {
-//             icon.classList.remove("bi-brightness-high-fill");
-//             icon.classList.add("bi-moon");
-//         } else {
-//             icon.classList.remove("bi-moon");
-//             icon.classList.add("bi-brightness-high-fill");
-//         }
-
-//         // Gửi AJAX lưu vào session nếu cần
-//         fetch('/save-theme', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-//             },
-//             body: JSON.stringify({ theme: theme })
-//         });
-//     };
-// });
-
-// function setTheme(theme) {
-//     document.documentElement.setAttribute("data-theme", theme);
-//     localStorage.setItem("theme", theme);
-
-//     // Đổi icon trên button
-//     const icon = document.querySelector("#darkmode i");
-//     if (theme === "dark") {
-//         icon.classList.remove("bi-brightness-high-fill");
-//         icon.classList.add("bi-moon");
-//     } else {
-//         icon.classList.remove("bi-moon");
-//         icon.classList.add("bi-brightness-high-fill");
-//     }
-
-//     // Gửi AJAX lưu vào session nếu cần
-//     fetch('/save-theme', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-//         },
-//         body: JSON.stringify({ theme: theme })
-//     });
-// }
 
 //baatss đồng bộ nhanh hơn tý 
 async function setTheme(theme) {

@@ -4274,3 +4274,7 @@ figure {
 .logo a img {
     max-width: 100px !important;
 }
+
+#mobile-menu-wrap .slicknav_menu .slicknav_btn {
+    margin: 0px !important;
+}

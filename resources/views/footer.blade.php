@@ -120,19 +120,15 @@
     <div class="blob blob-0"></div>
 </div> --}}
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-<!-- jQuery (phải trước Bootstrap) -->
-{{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
-<!-- Js Plugins -->
-{{-- <script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script> --}}
-<script src="{{ asset('template/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('template/js/jquery.magnific-popup.min.js') }}"></script>
-<script src="{{ asset('template/js/isotope.pkgd.min.js') }}"></script>
-<script src="{{ asset('template/js/masonry.pkgd.min.js') }}"></script>
-<script src="{{ asset('template/js/jquery.slicknav.js') }}"></script>
-<script src="{{ asset('template/js/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('template/js/main.js') }}"></script>
-<script src="{{ asset('template/admin/js/main.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="{{ asset('template/js/design.js') }}"></script>
+<!-- JS Libraries - Dùng defer để tránh chặn hiển thị -->
+<script defer src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script defer src="{{ asset('template/js/bootstrap.min.js') }}"></script>
+<script defer src="{{ asset('template/js/jquery.magnific-popup.min.js') }}"></script>
+<script defer src="{{ asset('template/js/isotope.pkgd.min.js') }}"></script>
+<script defer src="{{ asset('template/js/masonry.pkgd.min.js') }}"></script>
+<script defer src="{{ asset('template/js/jquery.slicknav.js') }}"></script>
+<script defer src="{{ asset('template/js/owl.carousel.min.js') }}"></script>
+<script defer src="{{ asset('template/js/main.js') }}"></script>
+<script defer src="{{ asset('template/admin/js/main.js') }}"></script>
+<script defer src="{{ asset('template/js/design.js') }}"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

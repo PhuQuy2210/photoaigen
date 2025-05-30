@@ -216,6 +216,13 @@
     //         });
     //     }
     // });
+
+    function formatViews(views) {
+        if (views >= 1000) {
+            return (views / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+        }
+        return views.toLocaleString('de-DE');
+    }
     
     $(document).ready(function () {
         $('.image-popup').magnificPopup({
@@ -268,7 +275,7 @@
                 },
                 success: function (response) {
                     if (response.success) {
-                        $imageElement.find('.view-icon span').text(response.view.toLocaleString('de-DE'));
+                        $imageElement.find('.view-icon span').text(formatViews(response.view));
                     }
                 }
             });
