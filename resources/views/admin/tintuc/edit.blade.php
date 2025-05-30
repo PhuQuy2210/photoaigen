@@ -43,7 +43,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="description">Mô tả: </label>
-                        <textarea name="description" class="form-control" rows="2" >{{ $tintuc->description }}</textarea>
+                        <textarea name="description" class="form-control" rows="2">{{ $tintuc->description }}</textarea>
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -111,10 +111,33 @@
                     <!-- Hình ảnh -->
                     <div class="form-group">
                         <label for="menu">Hình ảnh: </label>
-                        <input type="file" class="form-control" name="url">
+                        <input type="file" class="form-control" name="url[]" multiple>
                         @error('url')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
+                    </div>
+
+                    <!-- Hiển thị hình ảnh đã tải lên -->
+                    <div class="form-group">
+                        <label>Hình ảnh hiện tại:</label>
+                        <div class="row">
+                            @if ($images && $images->count() > 0)
+                                @foreach ($images as $image)
+                                    <div class="col-md-4 text-center">
+                                        <img src="{{ Storage::disk('s3')->url($image->url) }}" alt="Hình ảnh"
+                                            class="img-thumbnail mb-2" style="width: 100px; height: 100px;">
+                                        <div>
+                                            <label>
+                                                <input type="checkbox" name="delete_images[]" value="{{ $image->id }}">
+                                                Xóa
+                                            </label>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <p>Chưa có hình ảnh nào được tải lên.</p>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>

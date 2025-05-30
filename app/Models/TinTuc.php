@@ -44,8 +44,9 @@ class TinTuc extends Model
      */
     public function images()
     {
-        return $this->hasMany(TinTucImage::class, 'tintuc_id');
+        return $this->hasMany(TinTucImage::class, 'tintuc_id', 'id');
     }
+
 
     /**
      * Lấy full URL của ảnh đầu tiên từ tin_tuc_images.

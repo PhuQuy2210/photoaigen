@@ -8,6 +8,7 @@ use App\Models\DanhMucTin;
 use App\Models\TinTuc;
 use App\Models\TinTucImage;
 use App\Models\User;
+use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Exception;
@@ -68,7 +69,7 @@ class TinTucService
             $data['active'] = 1;
             $data['view'] = 1;
             $data['view_fake'] = rand(1000, 5000); // Thêm view giả
-            
+
             // Tạo bản ghi TinTuc
             $tintuc = TinTuc::create($data);
 
@@ -103,98 +104,91 @@ class TinTucService
         }
     }
 
-    // public function insert($request)
-    // {
-    //     try {
-    //         $data = $request->only(['title', 'content', 'description', 'author_id', 'category_id']);
-    //         $imagePaths = [];
-
-    //         if ($request->hasFile('url')) {
-    //             $files = $request->file('url');
-
-    //             foreach ($files as $file) {
-    //                 $extension = $file->getClientOriginalExtension();
-    //                 $filename = uniqid() . '.' . $extension;
-
-    //                 // Đường dẫn lưu ảnh trên S3
-    //                 $imagePath = 'blogs/' . $filename;
-
-    //                 // Upload ảnh lên S3
-    //                 Storage::disk('s3')->put($imagePath, file_get_contents($file));
-
-    //                 // Thêm đường dẫn vào mảng
-    //                 $imagePaths[] = $imagePath;
-    //             }
-
-    //             // Lưu vào DB
-    //             $data['url'] = json_encode($imagePaths); // 👈 Lưu danh sách ảnh dạng JSON
-    //             $data['active'] = 1;
-    //             $data['view'] = 1;
-
-    //             TinTuc::create($data);
-
-    //             Session::flash('success', 'Thêm bản tin thành công!');
-    //             return true;
-    //         } else {
-    //             throw new Exception("Vui lòng chọn ít nhất một hình ảnh.");
-    //         }
-    //     } catch (Exception $err) {
-    //         Log::error('Lỗi khi upload ảnh:', ['message' => $err->getMessage()]);
-    //         Session::flash('error', 'Lỗi: ' . $err->getMessage());
-    //         return false;
-    //     }
-    // }
-
     public function update($tintuc, $request)
     {
-        $img = $tintuc;
+        DB::beginTransaction(); // Bắt đầu transaction
+        try {
+            // Cập nhật thông tin tin tức
+            $tintuc->title = $request->input('title');
+            $tintuc->author_id = $request->input('author_id');
+            $tintuc->description = $request->input('description');
+            $tintuc->content = $request->input('content');
+            $tintuc->view = $request->input('view');
+            $tintuc->active = $request->input('active');
+            $tintuc->category_id = $request->input('category_id');
+            $tintuc->save();
 
-        // Kiểm tra xem có file thumb trong request không
-        if ($request->hasFile('url')) {
-            $file = $request->file('url');
-            $extension = $file->getClientOriginalExtension();
-            $filename = 'upload/tintuc/' . time() . '.' . $extension;
+            // Xử lý upload hình ảnh mới
+            if ($request->hasFile('url')) {
+                $files = $request->file('url');
 
-            // Xóa file cũ nếu tồn tại
-            if ($img->url && file_exists(public_path($img->url))) {
-                unlink(public_path($img->url));
+                foreach ($files as $file) {
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = uniqid() . '.' . $extension;
+
+                    // Đường dẫn lưu ảnh trên S3
+                    $imagePath = 'blogs/' . $filename;
+
+                    // Upload ảnh lên S3
+                    Storage::disk('s3')->put($imagePath, file_get_contents($file));
+
+                    // Lưu đường dẫn vào bảng tin_tuc_images
+                    TinTucImage::create([
+                        'tintuc_id' => $tintuc->id,
+                        'url' => $imagePath,
+                    ]);
+                }
             }
 
-            $file->move(public_path('upload/tintuc'), $filename);
+            // Xóa hình ảnh cũ nếu có yêu cầu
+            if ($request->input('delete_images')) {
+                $imagesToDelete = $request->input('delete_images');
+                foreach ($imagesToDelete as $imageId) {
+                    $image = TinTucImage::find($imageId);
+                    if ($image) {
+                        // Xóa file khỏi S3
+                        if (Storage::disk('s3')->exists($image->url)) {
+                            Storage::disk('s3')->delete($image->url);
+                        }
+                        // Xóa bản ghi khỏi DB
+                        $image->delete();
+                    }
+                }
+            }
 
-            $img->url = $filename;
-        } else {
-            // Nếu không có file mới, giữ nguyên đường dẫn file cũ
-            $img->url = $request->input('url_old');
-        }
-
-        // Cập nhật các trường dữ liệu khác
-        $tintuc->title = $request->input('title');
-        $tintuc->author_id = $request->input('author_id');
-        $tintuc->description = $request->input('description');
-        $tintuc->content = $request->input('content');
-        $tintuc->view = $request->input('view');
-        $tintuc->active = $request->input('active');
-        $tintuc->category_id = $request->input('category_id');
-
-        try {
-            $img->save();
-            Session::flash('success', 'Cập nhật hình ảnh thành công');
-        } catch (Exception $e) {
-            Log::error('Lỗi khi cập nhật hình ảnh: ' . $e->getMessage());
-            Session::flash('error', 'Cập nhật hình ảnh thất bại. Vui lòng thử lại.');
+            DB::commit(); // Hoàn tất transaction
+            Session::flash('success', 'Cập nhật tin tức và hình ảnh thành công!');
+            return true;
+        } catch (Exception $err) {
+            DB::rollBack(); // Rollback nếu có lỗi
+            Log::error('Lỗi khi cập nhật tin tức:', ['message' => $err->getMessage()]);
+            Session::flash('error', 'Cập nhật thất bại. Lỗi: ' . $err->getMessage());
             return false;
         }
-        return true;
     }
+
 
     // xóa tin tức
     public function delete($request)
     {
-        $result = TinTuc::where('id', $request->input('id'))->first();
+        $tintuc = TinTuc::where('id', $request->input('id'))->first();
 
-        if ($result) {
-            $result->delete();
+        if ($tintuc) {
+            // Lấy tất cả các ảnh liên quan đến tin tức
+            $images = TinTucImage::where('tintuc_id', $tintuc->id)->get();
+
+            foreach ($images as $image) {
+                // Kiểm tra và xóa ảnh trên S3
+                if (Storage::disk('s3')->exists($image->url)) {
+                    Storage::disk('s3')->delete($image->url);
+                }
+                // Xóa bản ghi ảnh trong cơ sở dữ liệu
+                $image->delete();
+            }
+
+            // Xóa tin tức
+            $tintuc->delete();
+
             return true;
         }
         return false;

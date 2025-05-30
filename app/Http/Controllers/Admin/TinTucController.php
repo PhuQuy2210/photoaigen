@@ -92,10 +92,12 @@ class TinTucController extends Controller
         return view('admin.tintuc.edit', [
             'title' => "Cập nhật bản tin",
             'tintuc' => $tintuc,
+            'images' => $tintuc->images, // Lấy danh sách hình ảnh liên quan
             'danhmuctin' => $this->blogservice->getAll_active(),  // Lấy danh mục cha đang hoạt động
             'users' => $this->blogservice->getAll_users(),
         ]);
     }
+
 
     public function update(TinTuc $tintuc, FormRequest $request)
     {
@@ -106,14 +108,13 @@ class TinTucController extends Controller
         return redirect()->back();
     }
 
-    // Xóa tin
     public function destroy(Request $request)
     {
         $result = $this->blogservice->delete($request);
         if ($result) {
             return response()->json([
-                'error' => false, //thông báo cho client không có lỗi xảy ra 
-                'message' => 'Xóa hình tin thành công'
+                'error' => false,
+                'message' => 'Xóa tin tức và các hình ảnh liên quan thành công'
             ]);
         }
         return response()->json(['error' => true]);

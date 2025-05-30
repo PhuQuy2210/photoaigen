@@ -115,6 +115,14 @@ h6 {
     font-size: 12px !important;
 }
 
+.w-11 {
+    width: 110px !important;
+}
+
+.w-10 {
+    width: 100px;
+}
+
 p {
     font-size: 15px;
     font-family: "Open Sans", sans-serif;

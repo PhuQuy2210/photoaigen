@@ -6,7 +6,7 @@
 {{-- <title>{{ $title }}</title> --}}
 
 <!-- Fonts and icons -->
-<script src="{{ asset('template/admin/js/plugin/webfont/webfont.min.js') }}"></script>
+{{-- <script src="{{ asset('template/admin/js/plugin/webfont/webfont.min.js') }}"></script> --}}
 
 <!-- MDBootstrap CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css" rel="stylesheet" />

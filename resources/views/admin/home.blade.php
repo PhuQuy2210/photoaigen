@@ -81,8 +81,8 @@
                             </div>
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
-                                    <p class="card-category">Order</p>
-                                    <h4 class="card-title">576</h4>
+                                    <p class="card-category">Blogs</p>
+                                    <h4 class="card-title">{{ $totalBlogs }}</h4>
                                 </div>
                             </div>
                         </div>
