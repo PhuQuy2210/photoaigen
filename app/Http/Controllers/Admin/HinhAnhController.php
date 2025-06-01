@@ -79,8 +79,8 @@ class HinhAnhController extends Controller
             'url.*' => 'required|image|mimes:jpg,jpeg,png,webp|max:20048',
             'description' => 'nullable|string|max:1000',
             'direction' => 'nullable|string|max:255',
-            'category_id' => 'required|integer|exists:categories,id',
-            'category_child' => 'nullable|integer|exists:category_children,id',
+            'category_id' => 'required|integer|exists:danhmucanh,id',
+            'category_child' => 'nullable|integer|exists:catagory_img_child,id',
         ]);
         
         $result = $this->hinhanhAdminService->insert($request);

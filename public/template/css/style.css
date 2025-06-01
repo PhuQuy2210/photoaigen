@@ -4168,7 +4168,6 @@ figure {
     display: block;
     opacity: 1;
     transform: translate(-50%, -10px);
-    /* bay nhẹ lên trên */
 }
 
 .blog-details-section .blog-item {
@@ -4223,13 +4222,6 @@ figure {
     border-radius: 50px !important;
 }
 
-/* .neon-button::after {
-    content: "➜";
-    margin-left: 10px;
-    font-size: 1.1rem;
-    transition: transform 0.3s;
-} */
-
 .neon-button:hover::after {
     transform: translateX(5px);
 }
@@ -4277,4 +4269,8 @@ figure {
 
 #mobile-menu-wrap .slicknav_menu .slicknav_btn {
     margin: 0px !important;
+}
+
+.arrow_carrot-right, .arrow_carrot-left {
+    font-size: 30px;
 }

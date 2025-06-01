@@ -46,7 +46,7 @@ class TinTucController extends Controller
             'description' => 'nullable|string|max:1000',
             'content' => 'required|string',
             'author_id' => 'required|integer|exists:users,id',
-            'category_id' => 'required|integer|exists:categories,id',
+            'category_id' => 'required|integer|exists:danhmuctin,id',
             'url.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:20048',
         ]);
 
