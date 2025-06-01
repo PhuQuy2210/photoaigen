@@ -29,7 +29,7 @@
                         </a>
                         
                         <a href="#" class="btn btn-sm btn-danger"
-                            onclick="deleteDanhmuc({{ $danhmuc->id }}, '{{ route('danhmuctin.destroy') }}"><i
+                            onclick="deleteDanhmuc({{ $danhmuc->id }}, '{{ route('danhmuctin.destroy') }}')"><i
                                 class="fas fa-trash"></i>
                         </a>
                     </td>

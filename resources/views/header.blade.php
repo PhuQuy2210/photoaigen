@@ -172,10 +172,10 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <a class="dropdown-item" href="{{ route('switch.language', ['lang' => 'en']) }}">
-                                <img src="{{ asset('upload/logo/en.png') }}" width="20" class="me-1"> English
+                                <img src="{{ asset('upload/logo/en.png') }}" width="20" class="me-1" alt="flag-en"> English
                             </a>
                             <a class="dropdown-item" href="{{ route('switch.language', ['lang' => 'vi']) }}">
-                                <img src="{{ asset('upload/logo/vi.png') }}" width="20" class="me-1"> Tiếng
+                                <img src="{{ asset('upload/logo/vi.png') }}" width="20" class="me-1" alt="flag-vi"> Tiếng
                                 Việt
                             </a>
                         </div>
