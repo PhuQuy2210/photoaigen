@@ -13,11 +13,11 @@
             <div class="form-group">
                 <label for="danhmuc_id">Danh Mục Cha: </label>
                 <select name="danhmuc_id" id="danhmuc_id" class="form-control">
-                    {{-- <option value="">Chọn danh mục</option> --}}
+                    <option value="{{ $danhmuc->parent_id }}">{{ $danhmuc->parent->name }}</option>
                     @foreach ($danhmuc_cha as $dm)
                         @if ($dm->active == 1)
                             <option value="{{ $dm->id }}" {{ $dm->danhmuc_id == $danhmuc->id ? 'selected' : '' }}>
-                                {{ $danhmuc->parent->name }}
+                                {{ $dm->parent->name }}
                             </option>
                         @endif
                     @endforeach
