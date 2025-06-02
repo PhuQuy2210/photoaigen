@@ -104,9 +104,23 @@ class HinhAnhService
     // Lấy 40 ảnh theo danh mục con
     public function getImg_category_child($id)
     {
-        return HinhAnh::with('category_child')
-            ->where('category_child', $id)
+        // Lấy tên của danh mục con
+        $categoryChild = DB::table('catagory_img_child')->where('id', $id)->first();
+
+        if (!$categoryChild) {
+            return collect(); // Trả về tập rỗng nếu không tìm thấy
+        }
+
+        $keyword = $categoryChild->name;
+
+        // Lấy ảnh thỏa mãn điều kiện
+        return HinhAnh::with('category', 'category_child')
             ->where('active', 1)
+            ->where(function ($query) use ($id, $keyword) {
+                $query->where('category_child', $id)
+                    ->orWhere('description', 'like', '%' . $keyword . '%');
+            })
+            ->orderBy('created_at', 'desc')
             ->paginate(40);
     }
 
