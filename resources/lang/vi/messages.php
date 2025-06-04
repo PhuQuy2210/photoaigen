@@ -84,4 +84,7 @@ return [
     'report_sent_error' => 'Gửi báo cáo lỗi',
     'view' => 'Lượt xem',
 
+    // description
+    'meta_description' => 'PhotoAIgen cung cấp hình nền AI và ảnh nhiếp ảnh chất lượng cao, miễn phí cho điện thoại và laptop. Hỗ trợ cả tiếng Việt và tiếng Anh.',
+
 ];

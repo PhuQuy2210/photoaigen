@@ -82,4 +82,8 @@ return [
     'report_sent_success' => 'Report sent successfully.',
     'report_sent_error' => 'Error sending report',
     'view' => 'View',
+
+    // description
+    'meta_description' => 'PhotoAIgen offers high-quality AI wallpapers and photography for phones and laptops, free to download. Available in both Vietnamese and English.',
+
 ];
