@@ -26,18 +26,12 @@
 <link rel="stylesheet" href="{{ asset('template/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('template/css/style.css') }}">
 
-<!-- Trì hoãn CSS phụ -->
-<link rel="preload" href="{{ asset('template/css/font-awesome.min.css') }}" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-    <link rel="stylesheet" href="{{ asset('template/css/font-awesome.min.css') }}">
-</noscript>
+<!-- CSS chính -->
+<link rel="preload" as="style" href="{{ asset('template/css/font-awesome.min.css') }}">
+<link rel="stylesheet" href="{{ asset('template/css/font-awesome.min.css') }}" media="all">
 
-<link rel="preload" href="{{ asset('template/css/elegant-icons.css') }}" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-    <link rel="stylesheet" href="{{ asset('template/css/elegant-icons.css') }}">
-</noscript>
+<link rel="preload" as="style" href="{{ asset('template/css/elegant-icons.css') }}">
+<link rel="stylesheet" href="{{ asset('template/css/elegant-icons.css') }}" media="all">
 
 <link rel="preload" as="style" href="{{ asset('template/css/owl.carousel.min.css') }}">
 <link rel="stylesheet" href="{{ asset('template/css/owl.carousel.min.css') }}" media="all">
@@ -45,23 +39,14 @@
 <link rel="preload" as="style" href="{{ asset('template/css/magnific-popup.css') }}">
 <link rel="stylesheet" href="{{ asset('template/css/magnific-popup.css') }}" media="all">
 
-<link rel="preload" href="{{ asset('template/css/slicknav.min.css') }}" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-    <link rel="stylesheet" href="{{ asset('template/css/slicknav.min.css') }}">
-</noscript>
+<link rel="preload" as="style" href="{{ asset('template/css/slicknav.min.css') }}">
+<link rel="stylesheet" href="{{ asset('template/css/slicknav.min.css') }}" media="all">
 
-<link rel="preload" href="{{ asset('template/css/list-images.css') }}" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-    <link rel="stylesheet" href="{{ asset('template/css/list-images.css') }}">
-</noscript>
+<link rel="preload" as="style" href="{{ asset('template/css/list-images.css') }}">
+<link rel="stylesheet" href="{{ asset('template/css/list-images.css') }}" media="all">
 
-<link rel="preload" href="{{ asset('template/css/reponsive.css') }}" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-    <link rel="stylesheet" href="{{ asset('template/css/reponsive.css') }}">
-</noscript>
+<link rel="preload" as="style" href="{{ asset('template/css/reponsive.css') }}">
+<link rel="stylesheet" href="{{ asset('template/css/reponsive.css') }}" media="all">
 
 <link rel="preload" as="style" href="{{ asset('template/admin/css/kaiadmin.min.css') }}">
 <link rel="stylesheet" href="{{ asset('template/admin/css/kaiadmin.min.css') }}" media="all">
