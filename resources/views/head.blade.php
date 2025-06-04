@@ -39,17 +39,11 @@
     <link rel="stylesheet" href="{{ asset('template/css/elegant-icons.css') }}">
 </noscript>
 
-<link rel="preload" href="{{ asset('template/css/owl.carousel.min.css') }}" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-    <link rel="stylesheet" href="{{ asset('template/css/owl.carousel.min.css') }}">
-</noscript>
+<link rel="preload" as="style" href="{{ asset('template/css/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('template/css/owl.carousel.min.css') }}" media="all">
 
-<link rel="preload" href="{{ asset('template/css/magnific-popup.css') }}" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-    <link rel="stylesheet" href="{{ asset('template/css/magnific-popup.css') }}">
-</noscript>
+<link rel="preload" as="style" href="{{ asset('template/css/magnific-popup.css') }}">
+<link rel="stylesheet" href="{{ asset('template/css/magnific-popup.css') }}" media="all">
 
 <link rel="preload" href="{{ asset('template/css/slicknav.min.css') }}" as="style"
     onload="this.onload=null;this.rel='stylesheet'">
@@ -69,8 +63,5 @@
     <link rel="stylesheet" href="{{ asset('template/css/reponsive.css') }}">
 </noscript>
 
-<link rel="preload" href="{{ asset('template/admin/css/kaiadmin.min.css') }}" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-    <link rel="stylesheet" href="{{ asset('template/admin/css/kaiadmin.min.css') }}">
-</noscript>
+<link rel="preload" as="style" href="{{ asset('template/admin/css/kaiadmin.min.css') }}">
+<link rel="stylesheet" href="{{ asset('template/admin/css/kaiadmin.min.css') }}" media="all">
