@@ -21,22 +21,27 @@ use App\Http\Middleware\LanguageMiddleware;
 use Illuminate\Http\Request;
 use App\Http\Controllers\MainController as ControllersMainController;
 use App\Http\Controllers\SocialController;
-
+use Illuminate\Support\Facades\Response;
+use App\Models\DanhMucAnh;
+use App\Models\CatagoryImgChild;
+use App\Models\HinhAnh;
+use App\Models\TinTuc;
 
 Route::get('/auth/google', [SocialController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/google/callback', [SocialController::class, 'handleGoogleCallback'])->name('google.store');
-// Route::get('/download-image/{id}', [ImageController::class, 'download'])->name('download.image');
 Route::get('/download', [ImageController::class, 'download'])->name('download.image');
+Route::get('/sitemap.xml', function () {
+    $danhmuc = DanhMucAnh::all();
+    $danhmuccon = CatagoryImgChild::all();
+    $hinhanhs = HinhAnh::latest()->take(100)->get();
+    $blogs = TinTuc::latest()->take(100)->get();
+
+    $content = view('sitemap', compact('danhmuc', 'danhmuccon', 'hinhanhs', 'blogs'));
+
+    return Response::make($content, 200)->header('Content-Type', 'application/xml');
+})->name('sitemap');
 
 Route::middleware([LanguageMiddleware::class])->group(function () {
-    // trang chủ
-    Route::get('/', [ControllersMainController::class, 'index'])->name('home');
-    Route::get('/search', [ControllersMainController::class, 'search'])->name('home.search');
-    Route::get('/about_us', [ControllersMainController::class, 'about_us'])->name('home.about_us');
-    Route::get('/contact_us', [ControllersMainController::class, 'contact_us'])->name('home.contact_us');
-    Route::get('/terms_of_Service', [ControllersMainController::class, 'terms_of_Service'])->name('home.terms_of_Service');
-    Route::get('/privacy_Policy', [ControllersMainController::class, 'privacy_Policy'])->name('home.privacy_Policy');
-
     // Phiên đăng nhập đăng kí tài khoản
     Route::prefix('admin')->group(function () {
         Route::prefix('users')->group(function () {
@@ -51,9 +56,13 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
         });
     });
 
-    // load more
-    // Route::get('/get-images', [ControllersMainController::class, 'getImages'])->name('get-images');
-    // Route::get('/load-more-images', [ControllersMainController::class, 'loadMoreImages'])->name('load.more.images');
+    // trang chủ
+    Route::get('/', [ControllersMainController::class, 'index'])->name('home');
+    Route::get('/search', [ControllersMainController::class, 'search'])->name('home.search');
+    Route::get('/about_us', [ControllersMainController::class, 'about_us'])->name('home.about_us');
+    Route::get('/contact_us', [ControllersMainController::class, 'contact_us'])->name('home.contact_us');
+    Route::get('/terms_of_Service', [ControllersMainController::class, 'terms_of_Service'])->name('home.terms_of_Service');
+    Route::get('/privacy_Policy', [ControllersMainController::class, 'privacy_Policy'])->name('home.privacy_Policy');
 
     // cụm danh mục
     Route::get('/images-popular', [ControllersMainController::class, 'popular'])->name('images.popular');
@@ -62,22 +71,27 @@ Route::middleware([LanguageMiddleware::class])->group(function () {
     Route::get('/images-vertical', [ControllersMainController::class, 'verticalImage'])->name('images.vertical');
     Route::get('/images-horizontal', [ControllersMainController::class, 'horizontalmage'])->name('images.horizontal');
 
-    // lấy ảnh theo danh mục
+    // xem danh sách ảnh theo danh mục
     Route::get('/images-categories/{id}', [ControllersMainController::class, 'category_image'])->name('images.categories');
 
-    // lấy ảnh theo danh mục con
+    // xem danh sách ảnh theo danh mục con
     Route::get('/images-categories-child/{id}', [ControllersMainController::class, 'category_image_chils'])->name('images.categoriesChild');
-
-    // tăng lượt xem
-    Route::post('/update-view/{id}', [HinhAnhController::class, 'updateView'])->name('images.updateView');
 
     // trang tin tức
     Route::prefix('blog')->group(function () {
+        // Trang chủ xem danh sách tin tức
         Route::get('/', [BlogController::class, 'index'])->name('blog.index');
+        // xem chi tiết bài viết
         Route::get('/blogdetail/{id}', [BlogController::class, 'blogdetail'])->name('blog.detail');
+        // xem danh sách bài viết phổ biến
         Route::get('/popular', [BlogController::class, 'blog_popular'])->name('blog.popular');
+        // xem danh sách bài viết theo danh mục
         Route::get('/category/{id}', [BlogController::class, 'blog_category'])->name('blog.category');
     });
+
+
+    // tăng lượt xem
+    Route::post('/update-view/{id}', [HinhAnhController::class, 'updateView'])->name('images.updateView');
 
     // tăng lượt like
     Route::post('/like-image', [HinhAnhController::class, 'likeImage'])->name('images.like');
