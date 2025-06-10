@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="bd-last-desc mb-6">
-                            <p class="text-gray-700">{{ $blog->translated_content }}</p>
+                            <p class="text-gray-700">{!! $blog->translated_content !!}</p>
                         </div>
 
                         {{-- Danh sách ảnh --}}

@@ -89,4 +89,22 @@ class HinhAnh extends Model
     {
         return $this->hasMany(BaoCao::class, 'hinhanh_id');
     }
+
+    public function getCdnThumbAttribute()
+    {
+        return str_replace(
+            env('AWS_URL_S3'),
+            env('AWS_URL_CDN'),
+            $this->full_thumb
+        );
+    }
+
+    public function getCdnUrlAttribute()
+    {
+        return str_replace(
+            env('AWS_URL_S3'),
+            env('AWS_URL_CDN'),
+            $this->full_url
+        );
+    }
 }

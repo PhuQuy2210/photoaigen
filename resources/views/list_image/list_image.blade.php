@@ -1,7 +1,9 @@
 @foreach ($lists as $image)
     <div class="item_image {{ Str::slug($image->category->name) }} {{ $image->direction == '0' ? 'ngang' : 'doc' }}"
         data-id="{{ $image->id }}">
-        <img class="if" src="{{ asset($image->full_thumb) }}" alt="{{ __('messages.image_alt') }}">
+        {{-- <img class="if" src="{{ asset($image->full_thumb) }}" alt="{{ __('messages.image_alt') }}"> --}}
+        <img class="if" src="{{ $image->cdn_thumb }}" alt="{{ __('messages.image_alt') }}">
+
         <div class="box-icon">
             <div class="download-icon position-absolute top-0 start-0" title="{{ __('messages.download_image') }}">
                 <a href="{{ route('download.image', ['url' => $image->full_url]) }}">
@@ -54,10 +56,11 @@
                 </div>
             @endif
         </div>
-        <a href="{{ asset($image->full_url) }}" class="pf-icon position-absolute image-popup"
-            title="{{ __('messages.expand_image') }}">
+        <a href="{{ env('AWS_URL_CDN') . '/' . ltrim($image->full_url, '/') }}"
+            class="pf-icon position-absolute image-popup" title="{{ __('messages.expand_image') }}">
             <i class="bi bi-arrows-fullscreen"></i>
         </a>
+
 
         <div class="pf-text d-flex justify-content-center align-items-center">
             @if (Auth::check() && Auth::user()->role_id == 0)
@@ -76,11 +79,3 @@
         cancel: @json(__('messages.cancel')),
     };
 </script>
-{{-- <script>
-    function formatViews(views) {
-        if (views >= 1000) {
-            return (views / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
-        }
-        return views.toLocaleString('de-DE');
-    }
-</script> --}}
