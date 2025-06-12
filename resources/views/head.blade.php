@@ -6,7 +6,7 @@
 <meta name="description" content="{{ __('messages.meta_description') }}">
 <meta name="keywords" content="PhotoAIgen, AI wallpapers, free backgrounds, high resolution photos, photography, ảnh nền AI, hình nền miễn phí, ảnh đẹp, desktop, mobile">
 <meta name="author" content="PhotoAIgen Team">
-
+<meta name="p:domain_verify" content="5f100e1ba750316f960c7220b5484c61"/>
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>{{ $title }}</title>
